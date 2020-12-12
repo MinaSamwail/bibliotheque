@@ -2,7 +2,7 @@
   "name": "project-library",
   "version": "1.0.0",
   "description": "Online library",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./bin/www -e .hbs,.js"
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "book-api": "^4.0.3",
     "cloudinary": "^1.23.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
