@@ -34,6 +34,7 @@ app.use(
   })
 );
 
+// Definitions des routes
 const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
 

@@ -1,2 +1,15 @@
 <h1>Book research</h1>
-<h2>salut</h2>
+{{!-- {{#each bookDetail}}
+<h2>{{this.title}}</h2>
+{{/each}} --}}
+
+<div>
+    {{#each bookDetail}}
+    <div class="row">
+        <div class="col-md-12">
+            <p> {{volumeInfo.title}}</p>
+            <img src={{volumeInfo.imageLinks.smallThumbnail}} />
+        </div>
+    </div>
+    {{/each}}
+</div>

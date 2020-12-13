@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    {{!-- <link rel="stylesheet" href="style.css"> --}}
     {{!-- <link rel="stylesheet" href=""> lien pour le font awesome --}}
     {{!-- <script type="module" src=""></script> --}}
     <title>ironBooks</title>
@@ -17,8 +17,9 @@
         <a href="">Signup</a>
         <a href="">Log Out</a>
     </nav>
-    <form action="post">
-        <input placeholder="Search" id="book-name-input" type="search" name="search">
+    <form role="form" action="/" method="get">
+        <input type='text' name='bookSearch' placeholder='Enter a keyword...'>
+        <input type='submit' value='Search'>
     </form>
     {{{body}}}
 </body>
