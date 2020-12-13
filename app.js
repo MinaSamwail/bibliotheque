@@ -2,6 +2,7 @@ require("dotenv").config();
 require("./config/mongo");
 
 // const createError = require("http-errors"); // supprimer ?
+const axios = require("axios");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
