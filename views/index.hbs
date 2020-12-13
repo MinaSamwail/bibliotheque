@@ -1,12 +1,9 @@
 <h1>Book research</h1>
-{{!-- {{#each bookDetail}}
-<h2>{{this.title}}</h2>
-{{/each}} --}}
 
 <div>
     {{#each bookDetail}}
-    <div class="row">
-        <div class="col-md-12">
+    <div>
+        <div>
             <p> {{volumeInfo.title}}</p>
             <img src={{volumeInfo.imageLinks.smallThumbnail}} />
         </div>
