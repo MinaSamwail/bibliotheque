@@ -20,6 +20,16 @@ router.get("/", (req, res) => {
     });
 });
 
+//route to signin
+router.get("/signin", (req, res) =>{
+  res.render("signin");
+});
+
+//route to signup
+router.get("/signup", (req, res) =>{
+  res.render("signup");
+});
+
 // router.get("/search/:id", (req, res) => {});
 
 module.exports = router;
