@@ -20,13 +20,30 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+  const searchValue = req.query.bookSearch ? req.query.bookSearch : "naruto";
+  axios
+    .get(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&download=epub&key=AIzaSyCQjIcG0ECWnb5Lea7W_A3o0GRIIHdTzQ4&maxResults=40`
+    )
+    .then(function (response) {
+      const bookDetail = response.data.items[0].id;
+      // console.log("Resultat de la recherche", bookDetail);
+      res.render("bookDetail", { bookDetail });
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
+});
+
 //route to signin
-router.get("/signin", (req, res) =>{
+router.get("/signin", (req, res) => {
   res.render("signin");
 });
 
 //route to signup
-router.get("/signup", (req, res) =>{
+router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
