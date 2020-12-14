@@ -4,7 +4,7 @@ const axios = require("axios");
 
 //la page d'accueil (index.hbs) recherche les livres (R)
 router.get("/", (req, res) => {
-  const searchValue = req.query.bookSearch ? req.query.bookSearch : "2020";
+  const searchValue = req.query.bookSearch ? req.query.bookSearch : "naruto";
   axios
     .get(
       `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&download=epub&key=AIzaSyCQjIcG0ECWnb5Lea7W_A3o0GRIIHdTzQ4&maxResults=40`
@@ -20,7 +20,6 @@ router.get("/", (req, res) => {
     });
 });
 
-// recherche de livre avec l'id
 // router.get("/search/:id", (req, res) => {});
 
 module.exports = router;

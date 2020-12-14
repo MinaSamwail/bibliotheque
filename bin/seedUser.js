@@ -8,6 +8,7 @@ const users = [
     email: "jcvd@mail.com",
     password: "1234",
     avatar: "",
+    googleID: "104370469578924429909",
   },
 ];
 

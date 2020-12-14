@@ -8,6 +8,7 @@ const userSchema = new Schema({
     type: String,
     // default: "Lien de Cloudinary"
   },
+  googleID: String,
 });
 const User = mongoose.model("User", userSchema);
 module.exports = User;

@@ -37,5 +37,8 @@ app.use(
 // Definitions des routes
 const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
+//Route vers User
+const userRouter = require("./routes/user");
+app.use("/user", userRouter);
 
 module.exports = app;
