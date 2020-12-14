@@ -40,5 +40,8 @@ app.use("/", indexRouter);
 //Route vers User
 const userRouter = require("./routes/user");
 app.use("/user", userRouter);
+// Route vers Auth
+const authRouter = require("./routes/auth");
+app.use("/auth", authRouter);
 
 module.exports = app;
