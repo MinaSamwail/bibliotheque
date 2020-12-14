@@ -30,7 +30,7 @@
 }
 
 #index-container{
-    margin-top: 10vh;
+    margin-top: 8vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -38,5 +38,57 @@
 
 #card{
     width: 15vw;
-    height: 30vh;
+    height: 40vh;
 }
+
+.card-info p{
+    max-width: 8rem;
+    text-align: center;
+}
+
+@media screen and (max-width: 76.8rem) {
+    body {
+      background-color: blue;
+    }
+
+    .index-title{
+        margin-top: 30px;
+    }
+
+    #index-container{
+        /* margin-top: 5vh; */
+        display: flex;
+        align-items: center;
+    }
+
+    #card{
+        display: flex;
+        justify-content: center;
+        width: 20vw;
+        height: 45vh;
+    }
+  }
+
+  @media screen and (max-width: 50rem) {
+    body {
+      background-color: red;
+    }
+
+    .index-title{
+        margin-top: 25px;
+    }
+
+    #index-container{
+        margin-top: 5vh;
+        display: flex;
+        align-items: center;
+    }
+
+    #card{
+        display: flex;
+        justify-content: center;
+        width: 25vw;
+        height: 45vh;
+    }
+  }
+
