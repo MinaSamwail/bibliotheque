@@ -6,7 +6,9 @@ const axios = require("axios");
 router.get("/", (req, res) => {
   const searchValue = req.query.bookSearch ? req.query.bookSearch : "2020";
   axios
-    .get(`https://www.googleapis.com/books/v1/volumes?q=${searchValue}`)
+    .get(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&download=epub&key=AIzaSyCQjIcG0ECWnb5Lea7W_A3o0GRIIHdTzQ4&maxResults=40`
+    )
     .then(function (response) {
       const bookDetail = response.data.items;
       // console.log("Resultat de la recherche", bookDetail);
