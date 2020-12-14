@@ -21,13 +21,15 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const searchValue = req.query.bookSearch ? req.query.bookSearch : "naruto";
+  console.log(req.params.id);
+  const test = req.params.id;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${test}`;
+  //console.log(url);
   axios
-    .get(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&download=epub&key=AIzaSyCQjIcG0ECWnb5Lea7W_A3o0GRIIHdTzQ4&maxResults=40`
-    )
+    .get(url)
     .then(function (response) {
-      const bookDetail = response.data.items[0].id;
+      const bookDetail = response.data.items;
+      console.log(bookDetail);
       // console.log("Resultat de la recherche", bookDetail);
       res.render("bookDetail", { bookDetail });
     })
