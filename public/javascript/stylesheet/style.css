@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#header-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.navbar{
+    font-size: 20px;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+}
+
+.navbar a:hover{
+    color: bisque;
+}
+
+.index-title{
+    text-align:center;
+    font-size: 35px;
+}
+
+#index-container{
+    margin-top: 10vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#card{
+    width: 15vw;
+    height: 75vh;
+}

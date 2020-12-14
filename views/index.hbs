@@ -1,11 +1,11 @@
-<h1>Book research</h1>
+<h1 class="index-title">Book research</h1>
 
-<div>
+<div id="index-container">
     {{#each bookDetail}}
-    <div>
-        <div>
-            <p> {{volumeInfo.title}}</p>
+    <div id="card">
+        <div class="card-info">
             <img src={{volumeInfo.imageLinks.smallThumbnail}} />
+            <p> {{volumeInfo.title}}</p>
         </div>
     </div>
     {{/each}}
