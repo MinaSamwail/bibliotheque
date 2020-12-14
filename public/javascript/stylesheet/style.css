@@ -46,6 +46,15 @@
     text-align: center;
 }
 
+.searchbar {
+    width: 35vw;
+    padding: 0.7rem;
+    border: none;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    font-size: 0.9rem;
+}
+
 @media screen and (max-width: 76.8rem) {
     body {
       background-color: blue;
