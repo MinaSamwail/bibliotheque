@@ -9,7 +9,15 @@
     justify-content: space-between;
     margin: 10px;
 }
-
+.image-index{
+    margin: 3% 25%;
+    height: 400px;
+    width: 50%;
+}
+.img-test{
+    height: 400px;
+    width: 100%;
+}
 .navbar{
     font-size: 20px;
 }
