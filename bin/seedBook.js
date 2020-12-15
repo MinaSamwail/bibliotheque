@@ -10,6 +10,7 @@ const users = [
     smallThumbnail: "",
     language: "FR",
     pages: 450,
+    booksID: ["wj0uAgAAQBAJ","G0MuAgAAQBAJ"],
   },
 ];
 
