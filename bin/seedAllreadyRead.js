@@ -4,8 +4,8 @@ const AllreadyReadModel = require("../models/AllreadyRead");
 
 const booksAllReadyRead = [
   {
-    AllreadyRead: ["G0MuAgAAQBAJ"],
-    userID: "",
+    AllreadyRead: "G0MuAgAAQBAJ",
+    UserId: "5fd8bb17b2627e5602e18eed",
   },
 ];
 

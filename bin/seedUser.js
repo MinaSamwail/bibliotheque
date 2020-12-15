@@ -9,8 +9,8 @@ const users = [
     password: "1234",
     avatar: "",
     googleID: "104370469578924429909",
-    ToReadId: "",
-    AllreadyRead: "",
+    ToReadId: ["5fd8b9dfc901fa548f83e8ae"],
+    AllreadyRead: ["5fd8bd368e42be57e2574f1b"],
   },
 ];
 

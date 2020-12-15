@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const AllreadyReadSchema = new Schema({
   UserId: { type: Schema.Types.ObjectId, ref: "Users" },
-  AllreadyRead: Array,
+  AllreadyRead: String,
 });
 
 const AllreadyReadModel = mongoose.model("AllreadyRead", AllreadyReadSchema);
