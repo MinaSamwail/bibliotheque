@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const User = require("./../models/Users");
 const bcrypt = require("bcrypt");
+const middleware = require("../middlewares/exposeFlashMessages");
 
 router.get("/signin", (req, res) => {
   res.render("signin");
