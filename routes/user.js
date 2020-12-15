@@ -5,6 +5,7 @@ const router = new express.Router();
 const axios = require("axios");
 const allreadyReadModel = require("../models/AllreadyRead");
 const userModel = require("../models/Users");
+const { map } = require("../app");
 
 //GET dashboard
 router.get("/dashboard", (req, res) => {
@@ -31,9 +32,24 @@ router.get("/dashboard/read", async (req, res, next) => {
     const dataTest = await userModel
       .findById("5fd8c80be22c3a5cdccc0e4c")
       .populate("AllreadyRead");
-    console.log(dataTest);
 
-    res.render("allreadyRead", { dataTest });
+    let users = [];
+    let promises = [];
+    for (i = 0; i < dataTest.AllreadyRead.length; i++) {
+      promises.push(
+        axios
+          .get(
+            "https://www.googleapis.com/books/v1/volumes?q=" +
+              dataTest.AllreadyRead[i].AllreadyRead
+          )
+          .then((response) => {
+            // do something with response
+            users.push(response.data.items[0]);
+          })
+      );
+    }
+
+    Promise.all(promises).then(() => res.render("allreadyRead", { users }));
   } catch (err) {
     next(err);
   }
