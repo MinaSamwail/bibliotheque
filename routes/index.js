@@ -39,8 +39,5 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//route to signin
-
-// router.get("/search/:id", (req, res) => {});
 
 module.exports = router;

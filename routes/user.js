@@ -3,6 +3,7 @@
 const express = require("express");
 const router = new express.Router();
 const axios = require("axios");
+const allreadyReadModel = require("../models/AllreadyRead");
 
 //GET dashboard
 router.get("/dashboard", (req, res) => {
@@ -24,10 +25,35 @@ router.get("/", (req, res) => {
         console.log(error);
       });
   });
-  
+router.get("/dashboard/read", (req, res) => {
+    const dataTest = allreadyReadModel.find()
+    console.log(dataTest);
+    res.render("allreadyRead", dataTest);
+});
+//GET BY ID and add to allready read
+router.get("/dashboard/read/:id", (req, res) => {
+  const id = req.params.id;
+  const dataID = { UserId: "5fd749206e3fa9af79e41110",
+  AllreadyRead: id };
+  allreadyReadModel.create(dataID);
+  res.redirect("/",);
+});
 
-//GET BY ID
-// router.get("", (req, res) => {});
 
+router.get("/dashboard/to-read/:id", (req, res) => {
+
+  res.redirect("to-read");
+});
+
+// function unrollToRead(){
+//   axios
+//     .get(
+//         allreadyReadModel.find()
+//     )
+//     .then((
+//       response 
+//     ) => {const data = response.data}, console.log(response))
+// }
+// unrollToRead();
 
 module.exports = router;
