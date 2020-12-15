@@ -9,6 +9,8 @@ const users = [
     password: "1234",
     avatar: "",
     googleID: "104370469578924429909",
+    ToReadId: "",
+    AllreadyRead: "",
   },
 ];
 
