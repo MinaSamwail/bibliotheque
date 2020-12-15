@@ -7,7 +7,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-// const flash = require("connect-flash"); // designed to keep messages between 2 http request/response cycles
+const flash = require("connect-flash"); // designed to keep messages between 2 http request/response cycles
 const hbs = require("hbs");
 const session = require("express-session"); // supprimer ?
 // const bookApi = require("book-api"); // a voir si ca marche
@@ -33,6 +33,8 @@ app.use(
     resave: true,
   })
 );
+
+app.use(flash());
 
 // Definitions des routes
 const indexRouter = require("./routes/index");

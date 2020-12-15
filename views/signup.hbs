@@ -6,7 +6,7 @@
     {{#if msg}}
     <p class="message {{msg.status}}">{{msg.text}}</p>
     {{/if}}
-    <form method="post" action="/signup" id="form_user">
+    <form method="post" action="/auth/signup" id="form_user">
         <div class="form-item-wrapper flexed-item">
             <label for="username" class="label-ref label">Username</label>
             <input id="firstname" name="username" type="text" class="input-text input" placeholder="Albert" required>

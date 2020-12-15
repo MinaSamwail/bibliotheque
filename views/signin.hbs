@@ -6,7 +6,7 @@
     {{#if msg}}
     <p class="message {{msg.status}}">{{msg.text}}</p>
     {{/if}}
-    <form method="post" action="/signin" id="form_user">
+    <form method="post" action="/auth/signin" id="form_user">
         <div class="form-item-wrapper flexed-item">
             <label for="email" class="label-ref label">Email</label>
             <input id="email" name="email" type="email" class="input-text input" placeholder="albert.biceps@gmail.com"
@@ -18,5 +18,6 @@
         </div>
         <button class="button-primary white">Log in !</button>
     </form>
-    <p class="form-sub-infos">Don't have an account yet ? <a href="/auth/signup" class="button-link-form">Sign Up</a></p>
+    <p class="form-sub-infos">Don't have an account yet ? <a href="/auth/signup" class="button-link-form">Sign Up</a>
+    </p>
 </section>

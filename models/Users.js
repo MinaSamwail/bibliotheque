@@ -9,9 +9,11 @@ const userSchema = new Schema({
     type: String,
     // default: "Lien de Cloudinary"
   },
-  googleID: String,
-  ToReadId: [{ type: Schema.Types.ObjectId, ref: "ToRead" }],
-  AllreadyRead: [{ type: Schema.Types.ObjectId, ref: "AllreadyRead" }],
+  // googleID: String,
+  ToReadId: [{ type: Schema.Types.ObjectId, ref: "ToRead", default: [] }],
+  AllreadyRead: [
+    { type: Schema.Types.ObjectId, ref: "AllreadyRead", default: [] },
+  ],
 });
 const User = mongoose.model("User", userSchema);
 module.exports = User;
