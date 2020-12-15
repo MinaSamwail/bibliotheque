@@ -32,7 +32,7 @@ router.post("/signin", async (req, res, next) => {
       console.log(req.session, "before defining current user");
 
       req.flash("success");
-      res.redirect("/index");
+      res.redirect("/");
     }
   }
 });
