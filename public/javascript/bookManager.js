@@ -1,4 +1,3 @@
-// const { default: Axios } = require("axios");
 // let userID = "104370469578924429909"; // A definir car ici c'est juste un ID prédefini
 //function to read
 // function unrollToRead() {
@@ -6,7 +5,6 @@
 //     .get(
 //       `https://www.googleapis.com/books/v1/users/${userID}/bookshelves/2/volumes?key=AIzaSyC-ajZu5UYDsyY2kjnN6UQ0YOI1Yd5Ds0k`
 //     )
-
 
 //     .then(function (res) {
 //       const bookDetail = res.data.items;
@@ -42,9 +40,7 @@
 //     });
 // }
 
-
 //Function button allready read to add book from index to dashboard
-
 
 //btn to add to dashboard
 
@@ -56,4 +52,23 @@
 // const read = document.getElementById("btn-read");
 // read.addEventListener("click", unrollRead);
 
+function pushReadBook(evt) {
+  //const id = document.querySelector("#card > div > a:nth-child(4)").href.substring(document.querySelector("#card > div > a:nth-child(4)").href.lastIndexOf('/') + 1);
 
+  const currentId = evt.target.id;
+  try {
+    axios.post("/api/" + currentId);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function listenAddToReadButton() {
+  const btnRead = document.querySelectorAll(".alreadyread");
+
+  btnRead.forEach((e) => {
+    e.onclick = pushReadBook;
+  });
+}
+
+listenAddToReadButton();

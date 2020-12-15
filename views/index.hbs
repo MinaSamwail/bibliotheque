@@ -9,7 +9,7 @@
             <img src={{volumeInfo.imageLinks.smallThumbnail}} />
             <p> {{volumeInfo.title}}</p>
             <a href="/{{this.id}}">Detail</a>
-            <a href="/user/dashboard/read/{{this.id}}">I've read this book</a>
+              <button class="alreadyread" id="{{this.id}}">I've read this book</button>
             <a href="/user/dashboard/to-read/{{this.id}}">I want to read this book</a>
         </div>
     </div>
