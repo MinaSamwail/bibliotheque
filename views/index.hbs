@@ -9,9 +9,12 @@
             <img src={{volumeInfo.imageLinks.smallThumbnail}} />
             <p> {{volumeInfo.title}}</p>
             <a href="/{{this.id}}">Detail</a>
-              <button class="alreadyread" id="{{this.id}}">I've read this book</button>
+            <button class="alreadyread" id="{{this.id}}">I've read this book</button>
             <button class="read" id="{{this.id}}">I want to read this book</button>
         </div>
     </div>
     {{/each}}
+</div>
+<div>
+    {{> footer}}
 </div>

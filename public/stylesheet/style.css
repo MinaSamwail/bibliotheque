@@ -29,7 +29,7 @@
 }
 
 .navbar a:hover{
-    color: bisque;
+    color: #dc4c52;;
 }
 
 .index-title{
@@ -111,6 +111,29 @@
         width: 20vw;
         height: 45vh;
     }
+  }
+
+  /* PART OF THE DETAILS PAGE */
+
+  .card-description{
+    position: relative;
+    top: 60px;
+    left: 6vw;
+
+  }
+
+  .book-cover{
+      transform: scale(2);
+  }
+
+  .book-info{
+    position: relative;
+    left: 15vw;
+    width: 55vw;
+  }
+
+  .book-title{
+      color: #dc4c52;;
   }
 
   @media screen and (max-width: 50rem) {
