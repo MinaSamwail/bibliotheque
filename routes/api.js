@@ -38,4 +38,22 @@ router.post("/read/:id", async (req, res, next) => {
   }
 });
 
+//router.post("dashboard/delete/:id", async (req, res, next) => {
+// const id = req.params.id;
+//const userId = req.session.userId;
+
+// try {
+//   const dataID = { UserId: userId, toReadID: id };
+//   res.status(201).json(
+//     AllreadyReadModel.findByIdAndRemove(req.params.id).then((dbPost) => {
+////       return userModel.findByIdAndUpdate(userId, {
+//         $pull: { AllreadyRead: dbPost._id },
+//       });
+//     })
+//  );
+//} catch (error) {
+//   next(error);
+///}
+//});
+
 module.exports = router;
