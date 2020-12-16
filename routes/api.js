@@ -8,7 +8,6 @@ router.post("/alreadyread/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
     const userId = req.session.userId;
-    console.log(userId);
     const dataID = { UserId: userId, AllreadyRead: id };
     res.status(201).json(
       AllreadyReadModel.create(dataID).then((dbPost) => {
@@ -26,7 +25,6 @@ router.post("/read/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
     const userId = req.session.userId;
-    console.log(userId);
     const dataID = { UserId: userId, toReadID: id };
     res.status(201).json(
       toReadReadModel.create(dataID).then((dbPost) => {
