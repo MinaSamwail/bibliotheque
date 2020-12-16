@@ -6,7 +6,8 @@ const bookSchema = new Schema({
   description: String,
   smallThumbnail: {
     type: String,
-    // default: "Lien de Cloudinary"
+    default:
+      "https://www.echosciences-grenoble.fr/uploads/article/image/attachment/1005414294/xl_livre.png",
   },
   language: String,
   pages: Number,
