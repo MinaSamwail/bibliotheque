@@ -9,9 +9,12 @@ const userModel = require("../models/Users");
 const toReadReadModel = require("../models/ToRead");
 const booksModel = require("./../models/books");
 const { map } = require("../app");
+const protectedRoute = require("./../middlewares/protectRoute");
+
+// router.use(protectedRoute);
 
 //GET dashboard
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", protectedRoute, (req, res) => {
   res.render("dashboard");
 });
 router.get("/", (req, res) => {
@@ -122,13 +125,17 @@ router.get("/dashboard/read/:id", (req, res) => {
   }
 });
 
-router.get("/dashboard/booksCreated", async (req, res, next) => {
-  try {
-    res.render("booksCreated", { books: await booksModel.find() });
-  } catch (error) {
-    next(error);
+router.get(
+  "/dashboard/booksCreated",
+
+  async (req, res, next) => {
+    try {
+      res.render("booksCreated", { books: await booksModel.find() });
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get("/dashboard/to-read/:id", (req, res) => {
   res.redirect("to-read");
