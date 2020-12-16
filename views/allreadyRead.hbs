@@ -1,10 +1,9 @@
-<h1>Books Already read</h1>
+<h1>I've read this Book</h1>
 {{#each users}}
 <p>{{volumeInfo.title}}</p>
 
 {{/each}}
 
 {{#each test}}
-  <a href="/user/dashboard/delete/{{this._id}}" class="fa fa-trash"></a>
+<a href="/user/dashboard/delete/{{this._id}}" class="fa fa-trash"></a>
 {{/each}}
-

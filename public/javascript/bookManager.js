@@ -70,6 +70,16 @@ function pushReadBook(evt) {
   }
 }
 
+function deleteAlreadyReadBook(evt) {
+  const currentId = evt.target.id;
+  try {
+    axios.post("/api/dashboard/delete/" + currentId);
+    getFullList();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 function listenAddToReadButton() {
   const btnRead = document.querySelectorAll(".alreadyread");
 
@@ -85,6 +95,52 @@ function listenToReadButton() {
     e.onclick = pushReadBook;
   });
 }
+
+function getFullList() {
+  axios
+    .get("/api/dashboard/alreadyread")
+    .then((response) => {
+      const data = response.data;
+      const charContainer = document.querySelector("#data-container");
+      charContainer.innerHTML = "";
+
+      data[0].forEach((elemt) => {
+        charContainer.innerHTML += `
+      
+        
+          <p class="test">${elemt.volumeInfo.title}</p>
+ 
+    `;
+      });
+      data[1].forEach((elemt) => {
+        charContainer.innerHTML += `
+      <button id="${elemt._id}" class="fa fa-trash" name ="test"></button>
+
+      
+  `;
+      });
+      console.log("refresh");
+      listenToAlreadyReadDeleteButton();
+    })
+    .catch((err) => {
+      console.log(`Error while deleting: ${err}`);
+    });
+}
+
+function listenToAlreadyReadDeleteButton() {
+  const btnDelete = document.querySelectorAll(".fa-trash");
+  btnDelete.forEach((e) => {
+    e.onclick = deleteAlreadyReadBook;
+  });
+}
+
+window.addEventListener("load", () => {
+  const btnDelete = document.querySelectorAll(".fa-trash");
+  document;
+  btnDelete.forEach((btn) => {
+    btn.addEventListener("click", deleteAlreadyReadBook);
+  });
+});
 
 listenAddToReadButton();
 listenToReadButton();
