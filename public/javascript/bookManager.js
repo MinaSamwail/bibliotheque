@@ -52,12 +52,19 @@
 // const read = document.getElementById("btn-read");
 // read.addEventListener("click", unrollRead);
 
-function pushReadBook(evt) {
-  //const id = document.querySelector("#card > div > a:nth-child(4)").href.substring(document.querySelector("#card > div > a:nth-child(4)").href.lastIndexOf('/') + 1);
-
+function pushAlreadyReadBook(evt) {
   const currentId = evt.target.id;
   try {
-    axios.post("/api/" + currentId);
+    axios.post("/api/alreadyread/" + currentId);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function pushReadBook(evt) {
+  const currentId = evt.target.id;
+  try {
+    axios.post("/api/read/" + currentId);
   } catch (err) {
     console.error(err);
   }
@@ -67,8 +74,17 @@ function listenAddToReadButton() {
   const btnRead = document.querySelectorAll(".alreadyread");
 
   btnRead.forEach((e) => {
+    e.onclick = pushAlreadyReadBook;
+  });
+}
+
+function listenToReadButton() {
+  const btnRead = document.querySelectorAll(".read");
+
+  btnRead.forEach((e) => {
     e.onclick = pushReadBook;
   });
 }
 
 listenAddToReadButton();
+listenToReadButton();

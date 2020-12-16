@@ -5,6 +5,7 @@ const router = new express.Router();
 const axios = require("axios");
 const allreadyReadModel = require("../models/AllreadyRead");
 const userModel = require("../models/Users");
+const toReadReadModel = require("../models/ToRead");
 const { map } = require("../app");
 
 //GET dashboard
@@ -27,11 +28,11 @@ router.get("/", (req, res) => {
       console.log(error);
     });
 });
-router.get("/dashboard/read", async (req, res, next) => {
+router.get("/dashboard/alreadyread", async (req, res, next) => {
   const userId = req.session.userId;
   try {
     const dataTest = await userModel.findById(userId).populate("AllreadyRead");
-
+    console.log(dataTest);
     let users = [];
     let promises = [];
     for (i = 0; i < dataTest.AllreadyRead.length; i++) {
@@ -52,8 +53,35 @@ router.get("/dashboard/read", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/dashboard/read", async (req, res, next) => {
+  const userId = req.session.userId;
+  try {
+    const dataTest = await userModel.findById(userId).populate("ToReadId");
+    console.log(dataTest);
+    let users = [];
+    let promises = [];
+    for (i = 0; i < dataTest.ToReadId.length; i++) {
+      promises.push(
+        axios
+          .get(
+            "https://www.googleapis.com/books/v1/volumes?q=" +
+              dataTest.ToReadId[i].toReadID
+          )
+          .then((response) => {
+            users.push(response.data.items[0]);
+          })
+      );
+    }
+
+    Promise.all(promises).then(() => res.render("read", { users }));
+  } catch (err) {
+    next(err);
+  }
+});
+
 //GET BY ID and add to allready read
-router.get("/dashboard/read/:id", (req, res) => {
+router.get("/dashboard/alreadyread/:id", (req, res) => {
   try {
     const id = req.params.id;
     const userId = req.session.userId;
@@ -72,19 +100,27 @@ router.get("/dashboard/read/:id", (req, res) => {
   }
 });
 
+router.get("/dashboard/read/:id", (req, res) => {
+  try {
+    const id = req.params.id;
+    const userId = req.session.userId;
+    console.log(userId);
+    const dataID = { UserId: userId, toReadID: id };
+    allreadyReadModel
+      .create(dataID)
+      .then((dbPost) => {
+        return userModel.findByIdAndUpdate(userId, {
+          $push: { toReadID: dbPost._id },
+        });
+      })
+      .then(() => res.redirect("/"));
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get("/dashboard/to-read/:id", (req, res) => {
   res.redirect("to-read");
 });
-
-// function unrollToRead(){
-//   axios
-//     .get(
-//         allreadyReadModel.find()
-//     )
-//     .then((
-//       response
-//     ) => {const data = response.data}, console.log(response))
-// }
-// unrollToRead();
 
 module.exports = router;
