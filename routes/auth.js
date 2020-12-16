@@ -2,7 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const User = require("./../models/Users");
 const bcrypt = require("bcrypt");
-const middleware = require("../middlewares/exposeFlashMessages");
+// const middleware = require("../middlewares/exposeFlashMessages");
 
 router.get("/signin", (req, res) => {
   res.render("signin");
@@ -15,7 +15,7 @@ router.post("/signin", async (req, res, next) => {
 
   if (!foundUser) {
     // console.log("email invalid");
-    req.flash("error", "invalid credentials");
+    req.flash("error", "invalid email");
     res.redirect("/auth/signin");
     console.log("email invalid");
   } else {
@@ -23,7 +23,7 @@ router.post("/signin", async (req, res, next) => {
     const isSamePassword = bcrypt.compareSync(password, foundUser.password);
     if (!isSamePassword) {
       console.log("NOT THE PASS");
-      req.flash("error", "Invalid credentials");
+      req.flash("error", "Invalid password");
       res.redirect("/auth/signin");
     } else {
       console.log("bon Pass");
@@ -54,7 +54,7 @@ router.post("/signup", async (req, res, next) => {
       const hashedPassword = bcrypt.hashSync(newUser.password, 10);
       newUser.password = hashedPassword;
       await User.create(newUser);
-      req.flash("success", "Congrats ! You are now registered !");
+      req.flash("success", "Congrats ! You are now registered ! Please connecte yourself to your account");
       res.redirect("/auth/signin");
     }
   } catch (error) {

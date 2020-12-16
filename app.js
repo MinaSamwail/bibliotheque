@@ -10,6 +10,8 @@ const logger = require("morgan");
 const flash = require("connect-flash"); // designed to keep messages between 2 http request/response cycles
 const hbs = require("hbs");
 const session = require("express-session"); // supprimer ?
+
+
 // const bookApi = require("book-api"); // a voir si ca marche
 
 const app = express();
@@ -17,7 +19,7 @@ const app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
-// hbs.registerPartials(path.join(__dirname, "views/partials")); a decommenter quand le partials sera cree
+hbs.registerPartials(path.join(__dirname, "/views/partial")); //a decommenter quand le partials sera cree
 
 app.use(logger("dev"));
 app.use(express.json()); // expose asynchronous posted data in req.body
@@ -36,6 +38,8 @@ app.use(
 );
 
 app.use(flash());
+const middleware = require("./middlewares/exposeFlashMessages");
+app.use(middleware);
 
 // Definitions des routes
 const indexRouter = require("./routes/index");
