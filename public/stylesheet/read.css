@@ -1,0 +1,15 @@
+.container-read{
+    margin: 2% 2%;
+    display: flex;
+    justify-content: space-around;
+    width: 25vw;
+
+}
+.section-read{
+    margin: 1% 2%;
+    display: flex;
+    justify-content: space-around;
+}
+.first-child-picture{
+    margin: 2%;
+}
