@@ -1,9 +1,11 @@
 <h1>I've read this Book</h1>
+<div id="data-container">
 {{#each users}}
 <p>{{volumeInfo.title}}</p>
 
 {{/each}}
 
 {{#each test}}
-<a href="/user/dashboard/delete/{{this._id}}" class="fa fa-trash"></a>
+  <button id="{{this._id}}" class="fa fa-trash"></button>
 {{/each}}
+</div>
