@@ -122,11 +122,19 @@ router.get("/dashboard/read/:id", (req, res) => {
   }
 });
 
+router.get("/dashboard/booksCreated", async (req, res, next) => {
+  try {
+    res.render("booksCreated", { books: await booksModel.find() });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get("/dashboard/to-read/:id", (req, res) => {
   res.redirect("to-read");
 });
 
-router.get("/dashboard/create", (req, res) => {
+router.get("/dashboard/create", async (req, res) => {
   res.render("createBooks");
 });
 
@@ -171,7 +179,7 @@ router.post(
       await booksModel.findByIdAndUpdate(req.params.id, booktoUpdate, {
         new: true,
       });
-      res.redirect("/dashboard");
+      res.redirect("/user/dashboard");
     } catch (error) {
       next(error);
     }
