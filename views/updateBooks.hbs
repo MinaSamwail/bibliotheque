@@ -1,0 +1,26 @@
+<form method="POST" action="" class="form" enctype="multipart/form-data">
+    <h1>Update your Book</h1>
+    <label for="title" class="label">Title</label>
+    <input class="input" id="title" name="title" type="text" value="{{title}}">
+
+    <label for="author" class="label">Author</label>
+    <input class="input" id="author" name="author" type="text" value="{{author}}">
+
+    <label for="description" class="label">Description</label>
+    <input class="input" id="description" name="description" type="text" value="{{description }}">
+
+    <label for="language" class="label">Language</label>
+    <input class="input" id="language" name="language" type="text" value="{{language}}">
+
+    <label for="pages" class="label">Pages</label>
+    <input class="input" id="pages" name="pages" type="number" value="{{pages}}">
+
+    <label class="label" for="smallThumbnail">
+        <span>Update the cover </span>
+        <i class="icon fas fa-cloud-upload-alt fa-2x"></i>
+    </label>
+    <img class="preview" src="{{smallThumbnail}}" alt="{{title}}'s logo'">
+
+    <input class="is-hidden" id="smallThumbnail" type="file" name="smallThumbnail">
+    <button class="btn">create</button>
+</form>

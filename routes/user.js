@@ -3,9 +3,11 @@
 const express = require("express");
 const router = new express.Router();
 const axios = require("axios");
+const uploader = require("./../config/cloudinary");
 const allreadyReadModel = require("../models/AllreadyRead");
 const userModel = require("../models/Users");
 const toReadReadModel = require("../models/ToRead");
+const booksModel = require("./../models/books");
 const { map } = require("../app");
 
 //GET dashboard
@@ -28,6 +30,7 @@ router.get("/", (req, res) => {
       console.log(error);
     });
 });
+
 router.get("/dashboard/alreadyread", async (req, res, next) => {
   const userId = req.session.userId;
   try {
@@ -122,5 +125,29 @@ router.get("/dashboard/read/:id", (req, res) => {
 router.get("/dashboard/to-read/:id", (req, res) => {
   res.redirect("to-read");
 });
+
+router.get("/dashboard/create", (req, res) => {
+  res.render("updateBooks");
+});
+
+router.post(
+  "/dashboard/create",
+  uploader.single("smallThumbnail"),
+  async (req, res, next) => {
+    const newBook = { ...req.body };
+    if (req.file) {
+      console.log("REQUEST", req.file);
+      newBook.smallThumbnail = req.file.path;
+    } else {
+      newBook.smallThumbnail = undefined;
+    }
+    try {
+      await booksModel.create(newBook);
+      res.redirect("/dashboard");
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 module.exports = router;
