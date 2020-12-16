@@ -3,9 +3,7 @@
         <h1 class="form-title">Start your ironBooks journey</h1>
         <p class="form-subtitle">Enjoy yourself and be comfortable </p>
     </header>
-    {{#if msg}}
-    <p class="message {{msg.status}}">{{msg.text}}</p>
-    {{/if}}
+    {{> flash_messages}}
     <form method="post" action="/auth/signup" id="form_user">
         <div class="form-item-wrapper flexed-item">
             <label for="username" class="label-ref label">Username</label>

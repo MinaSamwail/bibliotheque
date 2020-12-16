@@ -54,7 +54,7 @@ router.post("/signup", async (req, res, next) => {
       const hashedPassword = bcrypt.hashSync(newUser.password, 10);
       newUser.password = hashedPassword;
       await User.create(newUser);
-      req.flash("success", "Congrats ! You are now registered ! Please connecte yourself to your account");
+      req.flash("success", "Congrats ! You are now registered ! Please connect to your account");
       res.redirect("/auth/signin");
     }
   } catch (error) {
