@@ -23,7 +23,9 @@
             <a href="/user/dashboard/alreadyread">I've read this book</a>
             <a href="/auth/signin">Sign In</a>
             <a href="/auth/signup">Sign Up</a>
-            <a href="">Log Out</a>
+            <form action="/auth/logout" method="post">
+                <button>Logout</button>
+            </form>
         </nav>
         <form class="container-form-test" role="form" action="/" method="get">
             <input class="searchbar" type='text' name='bookSearch' placeholder='Enter a keyword...'>
