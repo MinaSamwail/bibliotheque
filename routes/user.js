@@ -127,7 +127,16 @@ router.get("/dashboard/to-read/:id", (req, res) => {
 });
 
 router.get("/dashboard/create", (req, res) => {
-  res.render("updateBooks");
+  res.render("createBooks");
+});
+
+router.get("/dashboard/update/:id", async (req, res, next) => {
+  try {
+    const book = await booksModel.findById(req.params.id);
+    res.render("updateBooks", book);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post(
@@ -143,6 +152,25 @@ router.post(
     }
     try {
       await booksModel.create(newBook);
+      res.redirect("/user/dashboard");
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
+  "/dashboard/update/:id",
+  uploader.single("smallThumbnail"),
+  async (req, res, next) => {
+    const booktoUpdate = { ...req.body };
+    if (req.file && req.file.path) {
+      booktoUpdate.smallThumbnail = req.file.path;
+    }
+    try {
+      await booksModel.findByIdAndUpdate(req.params.id, booktoUpdate, {
+        new: true,
+      });
       res.redirect("/dashboard");
     } catch (error) {
       next(error);
