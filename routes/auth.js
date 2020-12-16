@@ -16,7 +16,7 @@ router.post("/signin", async (req, res, next) => {
   if (!foundUser) {
     // console.log("email invalid");
     req.flash("error", "invalid credentials");
-    req.redirect("/auth/signin");
+    res.redirect("/auth/signin");
     console.log("email invalid");
   } else {
     console.log("Bon MAIL");
@@ -31,7 +31,7 @@ router.post("/signin", async (req, res, next) => {
       const userObject = foundUser.toObject();
       delete userObject.password;
       console.log(req.session, "before defining current user");
-
+      req.session.userId = userObject._id;
       req.flash("success");
       res.redirect("/");
     }

@@ -4,9 +4,10 @@ const AllreadyReadModel = require("../models/AllreadyRead");
 const userModel = require("../models/Users");
 
 router.post("/:id", async (req, res, next) => {
+  const id = req.params.id;
   try {
-    const id = req.params.id;
-    const userId = "5fd8c80be22c3a5cdccc0e4c";
+    const userId = req.session.userId;
+    console.log(userId);
     const dataID = { UserId: userId, AllreadyRead: id };
     res.status(201).json(
       AllreadyReadModel.create(dataID).then((dbPost) => {

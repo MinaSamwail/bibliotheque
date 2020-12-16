@@ -28,10 +28,9 @@ router.get("/", (req, res) => {
     });
 });
 router.get("/dashboard/read", async (req, res, next) => {
+  const userId = req.session.userId;
   try {
-    const dataTest = await userModel
-      .findById("5fd8c80be22c3a5cdccc0e4c")
-      .populate("AllreadyRead");
+    const dataTest = await userModel.findById(userId).populate("AllreadyRead");
 
     let users = [];
     let promises = [];
@@ -43,7 +42,6 @@ router.get("/dashboard/read", async (req, res, next) => {
               dataTest.AllreadyRead[i].AllreadyRead
           )
           .then((response) => {
-            // do something with response
             users.push(response.data.items[0]);
           })
       );
@@ -56,19 +54,22 @@ router.get("/dashboard/read", async (req, res, next) => {
 });
 //GET BY ID and add to allready read
 router.get("/dashboard/read/:id", (req, res) => {
-  const id = req.params.id;
-  const userId = "5fd8c80be22c3a5cdccc0e4c";
-  const dataID = { UserId: userId, AllreadyRead: id };
-  allreadyReadModel.create(dataID).then((dbPost) => {
-    return userModel
-      .findByIdAndUpdate(userId, {
-        $push: { AllreadyRead: dbPost._id },
+  try {
+    const id = req.params.id;
+    const userId = req.session.userId;
+    console.log(userId);
+    const dataID = { UserId: userId, AllreadyRead: id };
+    allreadyReadModel
+      .create(dataID)
+      .then((dbPost) => {
+        return userModel.findByIdAndUpdate(userId, {
+          $push: { AllreadyRead: dbPost._id },
+        });
       })
-      .then(() => res.redirect("/"))
-      .catch((err) =>
-        console.log(`Err while creating the post in the DB: ${err}`)
-      );
-  });
+      .then(() => res.redirect("/"));
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get("/dashboard/to-read/:id", (req, res) => {
