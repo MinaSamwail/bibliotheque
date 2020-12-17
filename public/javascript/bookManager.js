@@ -79,6 +79,15 @@ function deleteAlreadyReadBook(evt) {
     console.error(err);
   }
 }
+function deleteToReadBooks(evt){
+  const currentId = evt.target.id;
+  try {
+    axios.post("/api/dashboard/read/delete/" + currentId);
+    fullListOfRead();
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 function listenAddToReadButton() {
   const btnRead = document.querySelectorAll(".alreadyread");
@@ -126,7 +135,21 @@ function getFullList() {
       console.log(`Error while deleting: ${err}`);
     });
 }
+// read part
+function fullListOfRead(){
+  axios
+    .get("/api/dashboard/read")
+    .then((response) => {
+      const dataTop = response.data;
+      const charContainerTop = document.querySelector(".fa fa-trash");
+      charContainerTop.innerHTML = "";
+      dataTop[0].forEach((el) => { charContainerTop.innerHTML += `<p class="test">${el.volumeInfo.title}</p>` });
+      dataTop[1].forEach((el) => { charContainerTop.innerHTML += `<button id="${el._id}" class="fa fa-trash" name ="test"></button>`});
 
+    console.log("refresh");
+    listenToReadButton();
+  })
+}
 function listenToAlreadyReadDeleteButton() {
   const btnDelete = document.querySelectorAll(".fa-trash");
   btnDelete.forEach((e) => {
@@ -141,6 +164,19 @@ window.addEventListener("load", () => {
     btn.addEventListener("click", deleteAlreadyReadBook);
   });
 });
+//test to click on btn delete on page read
+function listenToReadButton(){
+  const buttonDelete = document.querySelectorAll(".fa fa-trash");
+  buttonDelete.forEach((button) =>{
+    button.addEventListener("click", deleteToReadBooks);
+  });
+};
 
+window.addEventListener("load", () =>{
+  const deletebutton = document.querySelectorAll(".fa fa-trash");
+  deletebutton.forEach((btnn) =>{
+    btnn.addEventListener("click", deleteToReadBooks);
+  });
+});
 listenAddToReadButton();
 listenToReadButton();

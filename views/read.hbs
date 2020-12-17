@@ -15,8 +15,11 @@
         </div>
         <div>
             <a href="{{saleInfo.buyLink}}">Buy this book here</a>
-            <button class="button-primary white">Delete</button>
+
         </div>
     </div>
+    {{/each}}
+    {{#each test}}
+    <button id="{{this._id}}" class="fa fa-trash"></button>
     {{/each}}
 </section>

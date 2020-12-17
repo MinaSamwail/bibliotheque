@@ -80,8 +80,8 @@ router.get("/dashboard/read", async (req, res, next) => {
           })
       );
     }
-
-    Promise.all(promises).then(() => res.render("read", { users }));
+    let test = dataTest.ToReadId;
+    Promise.all(promises).then(() => res.render("read", { users , test}));
   } catch (err) {
     next(err);
   }
@@ -224,5 +224,21 @@ router.get("/dashboard/delete/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get("/dashboard/read/delete/:id", async (req, res, next) =>{
+  const userId = req.session.userId;
+  try{
+    await toReadReadModel
+      .findByIdAndRemove(req.params.id)
+      .then((dbPost) =>{
+        return userModel.findByIdAndUpdate(userId, { $pull: { toReadID: dbPost._id},
+        });
+      })
+      .then(() => res.redirect("/user/dashboard/read"));
+  } catch(err){
+    next(err);
+  }
+});
+
 
 module.exports = router;
