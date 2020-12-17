@@ -235,7 +235,7 @@
 
 /* Already read page */
 
-.title-already {
+.title-already, .titlePage {
   text-align: center;
 }
 
@@ -257,6 +257,37 @@
     width: 20vw;
     height: 45vh;
   }
+}
+
+/* created books css */
+
+.card-bookCreated{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.card-bookCreated img{
+    width: 200px;
+    height: 160px;
+    object-fit: scale-down;
+    margin-bottom: -5px;
+}
+
+.card-info-bc{
+    padding: 5px;
+    width: 300px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.card-info-bc a{
+    text-decoration: none;
+    color: black;
+}
+
+.card-info-bc a:hover{
+    color: #dc4c52;
 }
 
 @media screen and (max-width: 50rem) {
