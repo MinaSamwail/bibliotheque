@@ -23,12 +23,16 @@
             <a href="/user/dashboard">Dashboard</a>
             <a href="/user/dashboard/read">Books to read</a>
             <a href="/user/dashboard/alreadyread">I've read this book</a>
-            {{/if}}
-            <a href="/auth/signin">Sign In</a>
-            <a href="/auth/signup">Sign Up</a>
-            <form class="logOut-form" action="/auth/logout" method="post">
+           <form class="logOut-form" action="/auth/logout" method="post">
                 <button class="logOut">Log out</button>
             </form>
+             {{/if}}
+            {{#unless isLoggedIn}}
+            <a href="/auth/signin">Sign In</a>
+            <a href="/auth/signup">Sign Up</a>
+              {{/unless}}
+            
+    
         </nav>
         <form class="container-form-test" role="form" action="/" method="get">
             <input class="searchbar" type='text' name='bookSearch' placeholder='Enter a keyword...'>
