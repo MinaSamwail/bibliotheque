@@ -213,11 +213,9 @@ footer{
 
   /* Already read page */
 
-  /* #data-container{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  } */
+ .title-already{
+     text-align: center;
+ }
   
 
 
