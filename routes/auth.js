@@ -32,6 +32,7 @@ router.post("/signin", async (req, res, next) => {
       delete userObject.password;
       console.log(req.session, "before defining current user");
       req.session.userId = userObject._id;
+      req.session.currentUser = userObject;
       req.flash("success");
       res.redirect("/");
     }
@@ -54,7 +55,10 @@ router.post("/signup", async (req, res, next) => {
       const hashedPassword = bcrypt.hashSync(newUser.password, 10);
       newUser.password = hashedPassword;
       await User.create(newUser);
-      req.flash("success", "Congrats ! You are now registered ! Please connect to your account");
+      req.flash(
+        "success",
+        "Congrats ! You are now registered ! Please connect to your account"
+      );
       res.redirect("/auth/signin");
     }
   } catch (error) {
@@ -64,11 +68,11 @@ router.post("/signup", async (req, res, next) => {
 
 //Logout
 
-router.post('/logout', (req, res) =>{
+router.post("/logout", (req, res) => {
   req.session.destroy();
   // req.session.userId = null;
   // console.log(req.session.userId);
-  res.redirect('/');
-})
+  res.redirect("/");
+});
 
 module.exports = router;
