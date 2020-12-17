@@ -9,8 +9,9 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const flash = require("connect-flash"); // designed to keep messages between 2 http request/response cycles
 const hbs = require("hbs");
+const mongoose = require("mongoose");
 const session = require("express-session"); // supprimer ?
-
+const MongoStore = require("connect-mongo")(session);
 
 // const bookApi = require("book-api"); // a voir si ca marche
 
@@ -28,12 +29,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // INITIALIZE SESSION
+
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
-    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
     resave: true,
-    //cookie: { secure: true }
+    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET,
   })
 );
 

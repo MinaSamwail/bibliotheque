@@ -121,7 +121,6 @@ router.post("/dashboard/read/delete/:id", async (req, res, next) => {
             $pull: { toReadID: dbPost._id },
           });
         })
-        .then(() => res.redirect("/user/dashboard/read"))
     );
   } catch (error) {
     next(error);
@@ -135,13 +134,11 @@ router.post("/dashboard/alreadyRead/delete/:id", async (req, res, next) => {
     console.log(userId);
     res.status(201).json(
       await AllreadyReadModel.findByIdAndRemove(id)
-
-        .then((dbPost) => {
-          return userModel.findByIdAndUpdate(userId, {
-            $pull: { AllreadyRead: dbPost._id },
-          });
-        })
-        .then(() => res.redirect("/user/dashboard/alreadyread"))
+      .then((dbPost) => {
+        return userModel.findByIdAndUpdate(userId, {
+          $pull: { AllreadyRead: dbPost._id },
+        });
+      })
     );
   } catch (error) {
     next(error);
