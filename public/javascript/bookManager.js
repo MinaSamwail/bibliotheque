@@ -73,7 +73,7 @@ function pushReadBook(evt) {
 function deleteAlreadyReadBook(evt) {
   const currentId = evt.target.id;
   try {
-    axios.post("/api/dashboard/delete/" + currentId);
+    axios.post("/api/dashboard/alreadyRead/delete/" + currentId);
     getFullList();
   } catch (err) {
     console.error(err);
@@ -135,48 +135,62 @@ function getFullList() {
       console.log(`Error while deleting: ${err}`);
     });
 }
+
+
 // read part
 function fullListOfRead(){
   axios
     .get("/api/dashboard/read")
     .then((response) => {
       const dataTop = response.data;
-      const charContainerTop = document.querySelector(".fa fa-trash");
+      const charContainerTop = document.querySelector(".book-read-container-test");
       charContainerTop.innerHTML = "";
       dataTop[0].forEach((el) => { charContainerTop.innerHTML += `<p class="test">${el.volumeInfo.title}</p>` });
-      dataTop[1].forEach((el) => { charContainerTop.innerHTML += `<button id="${el._id}" class="fa fa-trash" name ="test"></button>`});
+      dataTop[1].forEach((el) => { charContainerTop.innerHTML += `<button id="${el._id}" class="fa fa-trash salut" name ="test"></button>`});
 
     console.log("refresh");
-    listenToReadButton();
+    listenToReadDeleteButton();
   })
 }
 function listenToAlreadyReadDeleteButton() {
-  const btnDelete = document.querySelectorAll(".fa-trash");
+  const btnDelete = document.querySelectorAll(".yo");
   btnDelete.forEach((e) => {
     e.onclick = deleteAlreadyReadBook;
   });
 }
 
-window.addEventListener("load", () => {
-  const btnDelete = document.querySelectorAll(".fa-trash");
-  document;
-  btnDelete.forEach((btn) => {
-    btn.addEventListener("click", deleteAlreadyReadBook);
+function listenToReadDeleteButton() {
+  const btnDelete = document.querySelectorAll(".salut");
+  btnDelete.forEach((e) => {
+    e.onclick = deleteToReadBooks;
   });
-});
+}
+listenToReadDeleteButton();
+listenToAlreadyReadDeleteButton();
+// window.addEventListener("load", () => {
+//   const btnDelete = document.querySelectorAll(".fa-trash");
+//   document;
+//   btnDelete.forEach((btn) => {
+//     btn.addEventListener("click", deleteAlreadyReadBook);
+//   });
+// });
 //test to click on btn delete on page read
-function listenToReadButton(){
-  const buttonDelete = document.querySelectorAll(".fa fa-trash");
-  buttonDelete.forEach((button) =>{
-    button.addEventListener("click", deleteToReadBooks);
-  });
-};
+// function listenToReadButton(){
+//   const buttonDelete = document.querySelectorAll(".fa fa-trash .salut");
+//   buttonDelete.forEach((button) =>{
+//     button.addEventListener("click", deleteToReadBooks);
+//   });
+// };
 
-window.addEventListener("load", () =>{
-  const deletebutton = document.querySelectorAll(".fa fa-trash");
-  deletebutton.forEach((btnn) =>{
-    btnn.addEventListener("click", deleteToReadBooks);
-  });
-});
+// window.addEventListener("load", () =>{
+//   const deletebutton = document.querySelectorAll(".salut");
+//   document;
+//   deletebutton.forEach((btnn) =>{
+//     btnn.addEventListener("click", deleteToReadBooks);
+//   });
+// });
+
+
+
 listenAddToReadButton();
 listenToReadButton();

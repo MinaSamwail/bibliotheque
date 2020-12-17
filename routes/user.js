@@ -208,7 +208,7 @@ router.post(
   }
 );
 
-router.get("/dashboard/delete/:id", async (req, res, next) => {
+router.get("/dashboard/alreadyRead/delete/:id", async (req, res, next) => {
   const userId = req.session.userId;
   try {
     await allreadyReadModel
