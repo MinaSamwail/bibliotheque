@@ -44,7 +44,13 @@ router.get("/dashboard/alreadyread", async (req, res, next) => {
     let test = dataTest.AllreadyRead;
 
     Promise.all(promises).then(function () {
-      res.status(201).json([users, test]);
+      const map = new Map();
+      users.forEach((item) => map.set(item.id, item));
+      test.forEach((item) =>
+        map.set(item.AllreadyRead, { ...map.get(item.AllreadyRead), ...item })
+      );
+      const mergedArr = Array.from(map.values());
+      res.status(201).json([mergedArr]);
     });
   } catch (err) {
     next(err);
@@ -101,7 +107,8 @@ router.post("/dashboard/read/delete/:id", async (req, res, next) => {
     const userId = req.session.userId;
     console.log(userId);
     res.status(201).json(
-      await toReadReadModel.findByIdAndRemove(id)
+      await toReadReadModel
+        .findByIdAndRemove(id)
 
         .then((dbPost) => {
           return userModel.findByIdAndUpdate(userId, {
@@ -114,7 +121,6 @@ router.post("/dashboard/read/delete/:id", async (req, res, next) => {
     next(error);
   }
 });
-
 
 router.post("/dashboard/alreadyRead/delete/:id", async (req, res, next) => {
   try {
@@ -135,8 +141,5 @@ router.post("/dashboard/alreadyRead/delete/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-
-
 
 module.exports = router;

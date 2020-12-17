@@ -109,22 +109,17 @@ function getFullList() {
   axios
     .get("/api/dashboard/alreadyread")
     .then((response) => {
-      const data = response.data;
+      const data = response.data[0];
       const charContainer = document.querySelector("#data-container");
+      console.log(data);
       charContainer.innerHTML = "";
 
-      data[0].forEach((elemt) => {
+      data.forEach((elemt) => {
         charContainer.innerHTML += `
       
         
           <p class="test">${elemt.volumeInfo.title}</p>
- 
-    `;
-      });
-      data[1].forEach((elemt) => {
-        charContainer.innerHTML += `
-      <button id="${elemt._id}" class="fa fa-trash yo" name ="test"></button>
-
+      <button id="${elemt._doc._id}" class="fa fa-trash yo" name ="test"></button>
       
   `;
       });

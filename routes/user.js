@@ -55,9 +55,14 @@ router.get("/dashboard/alreadyread", async (req, res, next) => {
     let test = dataTest.AllreadyRead;
 
     Promise.all(promises).then(function () {
-      const arr3 = users.map((item, i) => Object.assign({}, item, test[i]));
-      console.log(arr3);
-      res.render("allreadyRead", { arr3 });
+      const map = new Map();
+      users.forEach((item) => map.set(item.id, item));
+      test.forEach((item) =>
+        map.set(item.AllreadyRead, { ...map.get(item.AllreadyRead), ...item })
+      );
+      const mergedArr = Array.from(map.values());
+
+      res.render("allreadyRead", { mergedArr });
     });
   } catch (err) {
     next(err);
