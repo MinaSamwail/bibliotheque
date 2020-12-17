@@ -42,7 +42,7 @@ app.use(
 app.use(flash());
 const middleware = require("./middlewares/exposeFlashMessages");
 app.use(middleware);
-
+app.use(require("./middlewares/exposeLoginStatus"));
 // Definitions des routes
 const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
