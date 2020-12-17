@@ -53,8 +53,11 @@ router.get("/dashboard/alreadyread", async (req, res, next) => {
       );
     }
     let test = dataTest.AllreadyRead;
+
     Promise.all(promises).then(function () {
-      res.render("allreadyRead", { users, test });
+      const arr3 = users.map((item, i) => Object.assign({}, item, test[i]));
+      console.log(arr3);
+      res.render("allreadyRead", { arr3 });
     });
   } catch (err) {
     next(err);
@@ -81,7 +84,7 @@ router.get("/dashboard/read", async (req, res, next) => {
       );
     }
     let test = dataTest.ToReadId;
-    Promise.all(promises).then(() => res.render("read", { users , test}));
+    Promise.all(promises).then(() => res.render("read", { users, test }));
   } catch (err) {
     next(err);
   }
@@ -225,20 +228,20 @@ router.get("/dashboard/alreadyRead/delete/:id", async (req, res, next) => {
   }
 });
 
-router.get("/dashboard/read/delete/:id", async (req, res, next) =>{
+router.get("/dashboard/read/delete/:id", async (req, res, next) => {
   const userId = req.session.userId;
-  try{
+  try {
     await toReadReadModel
       .findByIdAndRemove(req.params.id)
-      .then((dbPost) =>{
-        return userModel.findByIdAndUpdate(userId, { $pull: { toReadID: dbPost._id},
+      .then((dbPost) => {
+        return userModel.findByIdAndUpdate(userId, {
+          $pull: { toReadID: dbPost._id },
         });
       })
       .then(() => res.redirect("/user/dashboard/read"));
-  } catch(err){
+  } catch (err) {
     next(err);
   }
 });
-
 
 module.exports = router;
