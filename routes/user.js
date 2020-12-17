@@ -88,15 +88,16 @@ router.get("/dashboard/read", async (req, res, next) => {
       );
     }
     let test = dataTest.ToReadId;
-    Promise.all(promises).then(function (){
+    Promise.all(promises).then(function () {
       console.log(test);
       const map = new Map();
       users.forEach((item) => map.set(item.id, item));
-      test.forEach((item) => map.set(item.toReadID, { ...map.get(item.toReadID), ...item })
+      test.forEach((item) =>
+        map.set(item.toReadID, { ...map.get(item.toReadID), ...item })
       );
       const mergedArr2 = Array.from(map.values());
-      res.render('read', { mergedArr2 });
-  })
+      res.render("read", { mergedArr2 });
+    });
   } catch (err) {
     next(err);
   }
@@ -253,6 +254,22 @@ router.get("/dashboard/read/delete/:id", async (req, res, next) => {
       .then(() => res.redirect("/user/dashboard/read"));
   } catch (err) {
     next(err);
+  }
+});
+
+router.get("/dashboard/booksCreated/delete/:id", async (req, res, next) => {
+  const userId = req.session.userId;
+  try {
+    await booksModel
+      .findByIdAndDelete(req.params.id)
+      .then((dbPost) => {
+        return userModel.findByIdAndUpdate(userId, {
+          $pull: { author: dbPost._id },
+        });
+      })
+      .then(() => res.redirect("/user/dashboard/booksCreated"));
+  } catch (error) {
+    next(error);
   }
 });
 
