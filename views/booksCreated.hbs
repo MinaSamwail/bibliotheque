@@ -1,9 +1,13 @@
 <h1>Books created</h1>
 
-{{#each data.author}}
-<p>{{title}}</p>
-<a href="/user/dashboard/update/{{_id}}">Wanna update your Books</a>
-<a href="/user/dashboard/booksCreated/delete/{{_id}}">Delete this book</a>
-{{/each}}
-
-{{data.title}}
+<div class="card-bookCreated">
+    {{#each data.author}}
+    <img src="{{this.smallThumbnail}}" alt="{{this.title}}">
+    <p>{{title}}</p>
+    <div class="two-btn">
+        <a href="/user/dashboard/update/{{_id}}">Wanna update your Books</a>
+        <a href="/user/dashboard/booksCreated/delete/{{_id}}">Delete this book</a>
+    </div>
+    {{/each}}
+    {{!-- {{data.title}} --}}
+</div>
