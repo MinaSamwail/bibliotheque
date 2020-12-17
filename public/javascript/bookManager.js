@@ -79,7 +79,7 @@ function deleteAlreadyReadBook(evt) {
     console.error(err);
   }
 }
-function deleteToReadBooks(evt){
+function deleteToReadBooks(evt) {
   const currentId = evt.target.id;
   try {
     axios.post("/api/dashboard/read/delete/" + currentId);
@@ -123,7 +123,7 @@ function getFullList() {
       });
       data[1].forEach((elemt) => {
         charContainer.innerHTML += `
-      <button id="${elemt._id}" class="fa fa-trash" name ="test"></button>
+      <button id="${elemt._id}" class="fa fa-trash yo" name ="test"></button>
 
       
   `;
@@ -136,21 +136,24 @@ function getFullList() {
     });
 }
 
-
 // read part
-function fullListOfRead(){
-  axios
-    .get("/api/dashboard/read")
-    .then((response) => {
-      const dataTop = response.data;
-      const charContainerTop = document.querySelector(".book-read-container-test");
-      charContainerTop.innerHTML = "";
-      dataTop[0].forEach((el) => { charContainerTop.innerHTML += `<p class="test">${el.volumeInfo.title}</p>` });
-      dataTop[1].forEach((el) => { charContainerTop.innerHTML += `<button id="${el._id}" class="fa fa-trash salut" name ="test"></button>`});
+function fullListOfRead() {
+  axios.get("/api/dashboard/read").then((response) => {
+    const dataTop = response.data;
+    const charContainerTop = document.querySelector(
+      ".book-read-container-test"
+    );
+    charContainerTop.innerHTML = "";
+    dataTop[0].forEach((el) => {
+      charContainerTop.innerHTML += `<p class="test">${el.volumeInfo.title}</p>`;
+    });
+    dataTop[1].forEach((el) => {
+      charContainerTop.innerHTML += `<button id="${el._id}" class="fa fa-trash salut" name ="test"></button>`;
+    });
 
     console.log("refresh");
     listenToReadDeleteButton();
-  })
+  });
 }
 function listenToAlreadyReadDeleteButton() {
   const btnDelete = document.querySelectorAll(".yo");
@@ -189,8 +192,6 @@ listenToAlreadyReadDeleteButton();
 //     btnn.addEventListener("click", deleteToReadBooks);
 //   });
 // });
-
-
 
 listenAddToReadButton();
 listenToReadButton();
