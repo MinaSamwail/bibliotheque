@@ -18,10 +18,12 @@
 <body>
     <div id="header-container">
         <nav class="navbar">
-            <a href="/">Home</a>
+            <a href="/">Home</a>   
+            {{#if isLoggedIn}}
             <a href="/user/dashboard">Dashboard</a>
             <a href="/user/dashboard/read">Books to read</a>
             <a href="/user/dashboard/alreadyread">I've read this book</a>
+            {{/if}}
             <a href="/auth/signin">Sign In</a>
             <a href="/auth/signup">Sign Up</a>
             <form class="logOut-form" action="/auth/logout" method="post">
