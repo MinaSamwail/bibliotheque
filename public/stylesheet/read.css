@@ -2,16 +2,16 @@
     text-align: center;
 }
 .book-read-container-test{
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-around;
 }
 .container-read{
     margin: 2% 2%;
-    width: 25%;
-
 }
 
 .first-child-picture{
     margin: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: green;
 }

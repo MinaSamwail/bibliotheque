@@ -120,7 +120,6 @@ function getFullList() {
         <div class="alreadyRead-card">
         <img src=${elemt.volumeInfo.imageLinks.smallThumbnail}>
           <p class="test">${elemt.volumeInfo.title}</p>
-          <p>${elemt.volumeInfo.authors}</p>
       <button id="${elemt._doc._id}" class="fa fa-trash yo" name ="test"></button>
       
   `;
@@ -145,17 +144,9 @@ function fullListOfRead() {
       charContainerTop.innerHTML += `
       <div class="book-read-container-test">
       <div class="container-read">
-      <div class="first-child-picture">
       <img src="${el.volumeInfo.imageLinks.smallThumbnail}" alt="Book picture">
       <p class="test">${el.volumeInfo.title}</p>
-      </div>
-      <div>
-            <p>${el.volumeInfo.authors}</p>
-            <p>Number of pages: ${el.volumeInfo.pageCount}</p>
-        </div>
-        <div>
       <button id="${el._doc._id}" class="fa fa-trash salut" name ="test"></button>
-      </div>
       </div>
       </div>
       `;
