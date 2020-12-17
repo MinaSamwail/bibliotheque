@@ -1,6 +1,8 @@
 {{!-- <h1>Description</h1> --}}
 <div class="card-description">
-    <img class="book-cover" src="{{bookDetail.[0].volumeInfo.imageLinks.smallThumbnail}}" alt="{{title}}">
+    <div class="book-img">
+        <img class="book-cover" src="{{bookDetail.[0].volumeInfo.imageLinks.smallThumbnail}}" alt="{{title}}">
+    </div>
     <div class="book-info">
         <p class="book-title">{{bookDetail.[0].volumeInfo.title}}</p>
         <p class="book-authors">{{bookDetail.[0].volumeInfo.authors}}</p>
