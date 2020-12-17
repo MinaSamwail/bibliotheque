@@ -1,7 +1,9 @@
 <h1>Books created</h1>
 
-{{#each books}}
-<p>{{this.title}}</p>
-<a href="/user/dashboard/update/{{this._id}}">Wanna update your Books</a>
+{{#each data.author}}
+<p>{{title}}</p>
+<a href="/user/dashboard/update/{{_id}}">Wanna update your Books</a>
 
 {{/each}}
+
+{{data.title}}

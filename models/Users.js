@@ -14,6 +14,7 @@ const userSchema = new Schema({
   AllreadyRead: [
     { type: Schema.Types.ObjectId, ref: "AllreadyRead", default: [] },
   ],
+  author: [{ type: Schema.Types.ObjectId, ref: "Book", default: [] }],
 });
 const User = mongoose.model("User", userSchema);
 module.exports = User;

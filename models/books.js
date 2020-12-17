@@ -10,6 +10,7 @@ const bookSchema = new Schema({
       "https://www.echosciences-grenoble.fr/uploads/article/image/attachment/1005414294/xl_livre.png",
   },
   language: String,
+  UserId: { type: Schema.Types.ObjectId, ref: "UserId", default: "" },
   pages: Number,
 });
 const Book = mongoose.model("Book", bookSchema);

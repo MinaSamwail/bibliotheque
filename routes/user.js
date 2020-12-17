@@ -7,14 +7,14 @@ const uploader = require("./../config/cloudinary");
 const allreadyReadModel = require("../models/AllreadyRead");
 const userModel = require("../models/Users");
 const toReadReadModel = require("../models/ToRead");
-const booksModel = require("./../models/books");
+const booksModel = require("../models/books");
 const { map } = require("../app");
 const protectedRoute = require("./../middlewares/protectRoute");
 
 // router.use(protectedRoute);
 
 //GET dashboard
-router.get("/dashboard", protectedRoute, (req, res) => {
+router.get("/dashboard", (req, res) => {
   res.render("dashboard");
 });
 router.get("/", (req, res) => {
@@ -129,8 +129,12 @@ router.get(
   "/dashboard/booksCreated",
 
   async (req, res, next) => {
+    const userId = req.session.userId;
     try {
-      res.render("booksCreated", { books: await booksModel.find() });
+      const data = await userModel.findById(userId).populate("author");
+
+      console.log(data);
+      res.render("booksCreated", { data });
     } catch (error) {
       next(error);
     }
@@ -142,7 +146,13 @@ router.get("/dashboard/to-read/:id", (req, res) => {
 });
 
 router.get("/dashboard/create", async (req, res) => {
-  res.render("createBooks");
+  const userId = req.session.userId;
+  console.log(userId);
+  try {
+    res.render("createBooks", { user: await userModel.findById(userId) });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get("/dashboard/update/:id", async (req, res, next) => {
@@ -158,6 +168,7 @@ router.post(
   "/dashboard/create",
   uploader.single("smallThumbnail"),
   async (req, res, next) => {
+    const userId = req.session.userId;
     const newBook = { ...req.body };
     if (req.file) {
       console.log("REQUEST", req.file);
@@ -166,7 +177,11 @@ router.post(
       newBook.smallThumbnail = undefined;
     }
     try {
-      await booksModel.create(newBook);
+      await booksModel.create(newBook).then((dbPost) => {
+        return userModel.findByIdAndUpdate(userId, {
+          $push: { author: dbPost._id },
+        });
+      });
       res.redirect("/user/dashboard");
     } catch (error) {
       next(error);
