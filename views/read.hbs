@@ -3,7 +3,7 @@
     {{#each mergedArr2}}
     <div class="container-read">
         <img src="{{volumeInfo.imageLinks.smallThumbnail}}" alt="Book picture">
-        <p>{{volumeInfo.title}}</p>
+        <p class="book-text">{{volumeInfo.title}}</p>
         <button id="{{_doc._id}}" class="fa fa-trash salut"></button>
     </div>
     {{/each}}

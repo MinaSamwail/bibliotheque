@@ -2,14 +2,21 @@ const express = require("express");
 const router = new express.Router();
 const axios = require("axios");
 
+
+
+
+
 //la page d'accueil (index.hbs) recherche les livres (R)
 router.get("/", (req, res) => {
   const searchValue = req.query.bookSearch ? req.query.bookSearch : "naruto";
   const userId = req.session.userId;
+  //random word to have a random index page
+const words = ["Albert", "murder", "cat", "dog", "apple", "bootcamp", "hacking", "king", "queen", "travel", "computing", "music", "berserk", "naruto", "maite", "dbz"];
+const random = Math.floor(Math.random() * words.length);
   console.log(userId);
   axios
     .get(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchValue}&download=epub&key=AIzaSyCQjIcG0ECWnb5Lea7W_A3o0GRIIHdTzQ4&maxResults=40`
+      `https://www.googleapis.com/books/v1/volumes?q=${words[random]}&download=epub&key=AIzaSyCQjIcG0ECWnb5Lea7W_A3o0GRIIHdTzQ4&maxResults=40`
     )
     .then(function (response) {
       const bookDetail = response.data.items;
