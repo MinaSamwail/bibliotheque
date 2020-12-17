@@ -106,6 +106,14 @@ height: 70vh;
     color: #dc4c52;
 }
 
+.detail{
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
 .container-form-test{
     position: relative;
     margin-top: 2%;
@@ -132,6 +140,7 @@ height: 70vh;
     width: 300px;
     padding: 0 6px;
 }
+
 .searchbar {
     border: none;
     background: none;
