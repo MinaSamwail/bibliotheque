@@ -140,8 +140,27 @@ function fullListOfRead() {
     );
     charContainerTop.innerHTML = "";
     dataTop.forEach((el) => {
-      charContainerTop.innerHTML += `<p class="test">${el.volumeInfo.title}</p>
-      <button id="${el._doc._id}" class="fa fa-trash salut" name ="test"></button>`;
+      charContainerTop.innerHTML += `
+      <div class="book-read-container-test">
+      <div class="container-read">
+      <div class="first-child-picture">
+      <img src="${el.volumeInfo.imageLinks.smallThumbnail}" alt="Book picture">
+      <p class="test">${el.volumeInfo.title}</p>
+      </div>
+      <div>
+            <p>${el.volumeInfo.authors}</p>
+            <p>${el.volumeInfo.publisher}</p>
+            <p>${el.volumeInfo.description}</p>
+            <p>${el.volumeInfo.pageCount}</p>
+            <p>${el.saleInfo.listPrice.amount}</p><span>${el.saleInfo.listPrice.currencyCode}</span>
+        </div>
+        <div>
+      <button id="${el._doc._id}" class="fa fa-trash salut" name ="test"></button>
+      </div>
+      </div>
+      </div>
+      `;
+      
     });
 
     console.log("refresh");
