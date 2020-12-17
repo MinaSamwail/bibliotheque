@@ -1,5 +1,5 @@
-<form method="POST" action="/user/dashboard/create" class="form" enctype="multipart/form-data">
-    <h1>Create your Book</h1>
+<form method="POST" action="/user/dashboard/create" class="form-create" enctype="multipart/form-data">
+    <h1 class="form-title">Create your Book</h1>
     <label for="title" class="label">Title</label>
     <input class="input" id="title" name="title" type="text" value="Thrones of penguin">
 
@@ -14,7 +14,7 @@
 
     <label for="pages" class="label">Pages</label>
     <input class="input" id="pages" name="pages" type="text" value="230">
-     <input id="userid" name="UserId" value="{{user._id}}" type="hidden">
+    <input id="userid" name="UserId" value="{{user._id}}" type="hidden">
     <label class="label" for="smallThumbnail">
         <span>Cover of the book </span>
         <i class="icon fas fa-cloud-upload-alt fa-2x"></i>

@@ -11,7 +11,7 @@
   margin: 1% 0;
 }
 
-#form_user{
+#form_user, .form-create, .form-update{
   display: flex;
   justify-content: center;
   flex-direction: column;
