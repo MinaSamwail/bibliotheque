@@ -7,8 +7,8 @@
     {{#each bookDetail}}
     <div id="card">
         <div class="card-info">
-            <img src={{volumeInfo.imageLinks.smallThumbnail}} />
-            <p> {{volumeInfo.title}}</p>
+            <img class="zoom-test" src={{volumeInfo.imageLinks.smallThumbnail}} />
+            <p class="detail"> {{volumeInfo.title}}</p>
             <a href="/{{this.id}}">Detail</a>
           
             <button class="alreadyread" id="{{this.id}}">I've read this book</button>

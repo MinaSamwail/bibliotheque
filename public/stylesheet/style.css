@@ -106,6 +106,14 @@ height: 70vh;
     color: #dc4c52;
 }
 
+.detail{
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
 .container-form-test{
     position: relative;
     margin-top: 2%;
@@ -132,6 +140,7 @@ height: 70vh;
     width: 300px;
     padding: 0 6px;
 }
+
 .searchbar {
     border: none;
     background: none;
@@ -143,10 +152,6 @@ height: 70vh;
     transition: 0.4s;
     line-height: 50px;
     width: 40px;
-}
-
-footer{
-    margin: 10px;
 }
 
 /* PART OF THE DETAILS PAGE */
@@ -276,3 +281,9 @@ footer{
     }
   }
 
+footer{
+    background-color: #FEF5E7;
+    margin-top: 5%;
+    margin: 0;
+    padding: 5px;
+}
