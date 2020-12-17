@@ -273,4 +273,10 @@ router.get("/dashboard/booksCreated/delete/:id", async (req, res, next) => {
   }
 });
 
+router.get("/books", async (req, res, next) => {
+  const books = await booksModel.find();
+
+  res.render("books", { books });
+});
+
 module.exports = router;

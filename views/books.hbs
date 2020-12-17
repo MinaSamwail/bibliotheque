@@ -1,0 +1,12 @@
+<div class="allbook-container">
+{{#each books}}
+<div class="books-card">
+<img style="width: 200px;height: 160px;object-fit: scale-down;margin-bottom: -5px;" src="{{smallThumbnail}}" alt="">
+<h1>{{title}}</h1>
+<p>{{author}}</p>
+<div>{{description}}</div>
+  <a class="alreadyread" id="{{this.id}}">I've read this book</a>
+            <a class="read" id="{{this.id}}">I want to read this book</a>
+</div>
+{{/each}}
+</div>
