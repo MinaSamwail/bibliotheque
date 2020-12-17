@@ -101,10 +101,11 @@ height: 70vh;
 /* PART OF THE DETAILS PAGE */
 
 .card-description{
-    position: relative;
-    top: 60px;
-    left: 6vw;
-    margin-top: 10vh;
+    display: flex;
+  }
+
+  .book-img{
+      margin: 20px;
   }
 
   .book-cover{
@@ -114,13 +115,10 @@ height: 70vh;
   }
 
   .book-info{
-    /* position: relative;
-    left: 15vw;
-    width: 55vw; */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    max-width: 50vw;
+    justify-content: center;
+    /* max-width: 50vw; */
   }
 
   .book-title{

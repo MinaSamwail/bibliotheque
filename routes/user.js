@@ -14,7 +14,7 @@ const protectedRoute = require("./../middlewares/protectRoute");
 // router.use(protectedRoute);
 
 //GET dashboard
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", protectedRoute, (req, res) => {
   res.render("dashboard");
 });
 router.get("/", (req, res) => {
