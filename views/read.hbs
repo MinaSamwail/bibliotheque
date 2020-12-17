@@ -2,18 +2,9 @@
 <div class="book-read-container-test">
     {{#each mergedArr2}}
     <div class="container-read">
-        <div class="first-child-picture">
-            <img src="{{volumeInfo.imageLinks.smallThumbnail}}" alt="Book picture">
-            <p>{{volumeInfo.title}}</p>
-        </div>
-        <div>
-            <p>{{volumeInfo.authors}}</p>
-            <p>{{volumeInfo.publisher}}</p>
-            <p>Number of pages: {{volumeInfo.pageCount}}</p>
-        </div>
-        <div>
-            <button id="{{_doc._id}}" class="fa fa-trash salut"></button>
-        </div>
+        <img src="{{volumeInfo.imageLinks.smallThumbnail}}" alt="Book picture">
+        <p>{{volumeInfo.title}}</p>
+        <button id="{{_doc._id}}" class="fa fa-trash salut"></button>
     </div>
     {{/each}}
 </div>
