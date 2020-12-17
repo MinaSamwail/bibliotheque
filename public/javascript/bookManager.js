@@ -134,16 +134,14 @@ function getFullList() {
 // read part
 function fullListOfRead() {
   axios.get("/api/dashboard/read").then((response) => {
-    const dataTop = response.data;
+    const dataTop = response.data[0];
     const charContainerTop = document.querySelector(
       ".book-read-container-test"
     );
     charContainerTop.innerHTML = "";
-    dataTop[0].forEach((el) => {
-      charContainerTop.innerHTML += `<p class="test">${el.volumeInfo.title}</p>`;
-    });
-    dataTop[1].forEach((el) => {
-      charContainerTop.innerHTML += `<button id="${el._id}" class="fa fa-trash salut" name ="test"></button>`;
+    dataTop.forEach((el) => {
+      charContainerTop.innerHTML += `<p class="test">${el.volumeInfo.title}</p>
+      <button id="${el._doc._id}" class="fa fa-trash salut" name ="test"></button>`;
     });
 
     console.log("refresh");

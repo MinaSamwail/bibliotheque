@@ -92,10 +92,16 @@ router.get("/dashboard/read", async (req, res, next) => {
           })
       );
     }
-    let test = dataTest.ToRead;
+    let test = dataTest.ToReadId;
 
     Promise.all(promises).then(function () {
-      res.status(201).json([users, test]);
+      const map = new Map();
+      users.forEach((item) => map.set(item.id, item));
+      test.forEach((item) =>
+        map.set(item.toReadID, { ...map.get(item.toReadID), ...item })
+      );
+      const mergedArr2 = Array.from(map.values());
+      res.status(201).json([mergedArr2]);
     });
   } catch (err) {
     next(err);

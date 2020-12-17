@@ -73,7 +73,6 @@ router.get("/dashboard/read", async (req, res, next) => {
   const userId = req.session.userId;
   try {
     const dataTest = await userModel.findById(userId).populate("ToReadId");
-    console.log(dataTest);
     let users = [];
     let promises = [];
     for (i = 0; i < dataTest.ToReadId.length; i++) {
@@ -89,7 +88,15 @@ router.get("/dashboard/read", async (req, res, next) => {
       );
     }
     let test = dataTest.ToReadId;
-    Promise.all(promises).then(() => res.render("read", { users, test }));
+    Promise.all(promises).then(function (){
+      console.log(test);
+      const map = new Map();
+      users.forEach((item) => map.set(item.id, item));
+      test.forEach((item) => map.set(item.toReadID, { ...map.get(item.toReadID), ...item })
+      );
+      const mergedArr2 = Array.from(map.values());
+      res.render('read', { mergedArr2 });
+  })
   } catch (err) {
     next(err);
   }

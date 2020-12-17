@@ -1,27 +1,23 @@
-<section class="section-read">
-    <h1 class="title-read">Books to read</h1>
-    <div class="book-read-container-test">
-        {{#each users}}
-        <div class="container-read">
-            <div class="first-child-picture">
-                <img src="{{volumeInfo.imageLinks.smallThumbnail}}" alt="Book picture">
-                <p>{{volumeInfo.title}}</p>
-            </div>
-            <div>
-                <p>{{volumeInfo.authors}}</p>
-                <p>{{volumeInfo.publisher}}</p>
-                <p>{{volumeInfo.description}}</p>
-                <p>{{volumeInfo.pageCount}}</p>
-                <p>{{saleInfo.listPrice.amount}}</p><span>{{saleInfo.listPrice.currencyCode}}</span>
-            </div>
-            <div>
-                <a href="{{saleInfo.buyLink}}">Buy this book here</a>
+<h1 class="h1-read">Books to read</h1>
+<div class="book-read-container-test">
+    {{#each mergedArr2}}
+    <div class="container-read">
+        <div class="first-child-picture">
+            <img src="{{volumeInfo.imageLinks.smallThumbnail}}" alt="Book picture">
+            <p>{{volumeInfo.title}}</p>
 
-            </div>
         </div>
-        {{/each}}
-        {{#each test}}
-        <button id="{{this._id}}" class="fa fa-trash salut"></button>
-        {{/each}}
+        <div>
+            <p>{{volumeInfo.authors}}</p>
+            <p>{{volumeInfo.publisher}}</p>
+            <p>{{volumeInfo.description}}</p>
+            <p>{{volumeInfo.pageCount}}</p>
+            <p>{{saleInfo.listPrice.amount}}</p><span>{{saleInfo.listPrice.currencyCode}}</span>
+        </div>
+        <div>
+            <a href="{{saleInfo.buyLink}}">Buy this book here</a>
+            <button id="{{_doc._id}}" class="fa fa-trash salut"></button>
+        </div>
     </div>
-</section>
+    {{/each}}
+</div>
