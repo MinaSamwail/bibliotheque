@@ -116,9 +116,11 @@ function getFullList() {
 
       data.forEach((elemt) => {
         charContainer.innerHTML += `
-      
-        
+        <div id="data-container">
+        <div class="alreadyRead-card">
+        <img src=${elemt.volumeInfo.imageLinks.smallThumbnail}>
           <p class="test">${elemt.volumeInfo.title}</p>
+          <p>${elemt.volumeInfo.authors}</p>
       <button id="${elemt._doc._id}" class="fa fa-trash yo" name ="test"></button>
       
   `;
@@ -149,10 +151,7 @@ function fullListOfRead() {
       </div>
       <div>
             <p>${el.volumeInfo.authors}</p>
-            <p>${el.volumeInfo.publisher}</p>
-            <p>${el.volumeInfo.description}</p>
-            <p>${el.volumeInfo.pageCount}</p>
-            <p>${el.saleInfo.listPrice.amount}</p><span>${el.saleInfo.listPrice.currencyCode}</span>
+            <p>Number of pages: ${el.volumeInfo.pageCount}</p>
         </div>
         <div>
       <button id="${el._doc._id}" class="fa fa-trash salut" name ="test"></button>
