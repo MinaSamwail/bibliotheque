@@ -1,11 +1,12 @@
 <h1>I've read this Book</h1>
 <div id="data-container">
   {{#each mergedArr}}
-  <p>{{volumeInfo.title}}</p>
-  <button id="{{_doc._id}}" class="fa fa-trash yo"></button>
+  <div class="alreadyRead-card">
+    <img src={{volumeInfo.imageLinks.smallThumbnail}} />
+    <div class="alreadyRead-info">
+      <p>{{volumeInfo.title}}</p>
+      <button id="{{_doc._id}}" class="fa fa-trash yo"></button>
+    </div>
+  </div>
   {{/each}}
-
-
-
-
 </div>
