@@ -1,9 +1,9 @@
 // CONNEXION A MONGO
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/ironBooks", {
-  useNewUrlParser: true,
+mongoose.connect(process.env.MONGODB_URI, {
   useCreateIndex: true,
+  useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
