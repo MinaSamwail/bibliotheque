@@ -56,18 +56,19 @@ function getFullList() {
     .get("/api/dashboard/alreadyread")
     .then((response) => {
       const data = response.data[0];
-      const charContainer = document.querySelector("#data-container");
+      const charContainer = document.querySelector(".data-container");
       console.log(data);
       charContainer.innerHTML = "";
 
       data.forEach((elemt) => {
         charContainer.innerHTML += `
-        <div id="data-container">
+        <div class="data-container">
         <div class="alreadyRead-card">
         <img src=${elemt.volumeInfo.imageLinks.smallThumbnail}>
           <p class="test">${elemt.volumeInfo.title}</p>
       <button id="${elemt._doc._id}" class="fa fa-trash yo" name ="test"></button>
-      
+      </div>
+      </div>
   `;
       });
       console.log("refresh");
@@ -88,15 +89,14 @@ function fullListOfRead() {
     charContainerTop.innerHTML = "";
     dataTop.forEach((el) => {
       charContainerTop.innerHTML += `
-      <div class="book-read-container-test">
+     
       <div class="container-read">
       <img src="${el.volumeInfo.imageLinks.smallThumbnail}" alt="Book picture">
-      <p class="test">${el.volumeInfo.title}</p>
+      <p class="book-text">${el.volumeInfo.title}</p>
       <button id="${el._doc._id}" class="fa fa-trash salut" name ="test"></button>
       </div>
       </div>
       `;
-      
     });
 
     console.log("refresh");

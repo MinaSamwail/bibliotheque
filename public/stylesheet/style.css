@@ -100,14 +100,21 @@
 }
 
 .card-info button {
-  border: none;
-  background-color: white;
-  padding: 5px;
-  cursor: pointer;
+  color: #494949 !important;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
 }
 
 .card-info button:hover {
-  color: #dc4c52;
+  color: #ffffff !important;
+  background: #f6b93b;
+  border-color: #f6b93b !important;
+  transition: all 0.4s ease 0s;
 }
 
 .detail {
@@ -235,7 +242,8 @@
 
 /* Already read page */
 
-.title-already, .titlePage {
+.title-already,
+.titlePage {
   text-align: center;
 }
 
@@ -261,33 +269,33 @@
 
 /* created books css */
 
-.card-bookCreated{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+.card-bookCreated {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
-.card-bookCreated img{
-    width: 200px;
-    height: 160px;
-    object-fit: scale-down;
-    margin-bottom: -5px;
+.card-bookCreated img {
+  width: 200px;
+  height: 160px;
+  object-fit: scale-down;
+  margin-bottom: -5px;
 }
 
-.card-info-bc{
-    padding: 5px;
-    width: 300px;
-    margin-top: 40px;
-    text-align: center;
+.card-info-bc {
+  padding: 5px;
+  width: 300px;
+  margin-top: 40px;
+  text-align: center;
 }
 
-.card-info-bc a{
-    text-decoration: none;
-    color: black;
+.card-info-bc a {
+  text-decoration: none;
+  color: black;
 }
 
-.card-info-bc a:hover{
-    color: #dc4c52;
+.card-info-bc a:hover {
+  color: #dc4c52;
 }
 
 @media screen and (max-width: 50rem) {
@@ -330,4 +338,47 @@ footer {
   width: 300px;
   margin-top: 40px;
   text-align: center;
+}
+
+.allbook-container,
+.data-container,
+.index-container,
+.book-read-container-test {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+  padding: 0;
+  margin: 0;
+}
+
+.books-card,
+.index-card,
+.container-read {
+  padding: 5px;
+  width: 300px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.alreadyRead-card {
+  margin-top: 40px;
+  padding: 5px;
+  width: 250px;
+}
+
+.index-card {
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  padding: 1em;
+  line-height: 1.5em;
+}
+.index-card {
+  border: solid 5px hsla(0, 95%, 35%, 1);
+}
+
+.zoom-test {
+  width: 200px;
+  height: 200px;
+
+  object-fit: scale-down;
 }
