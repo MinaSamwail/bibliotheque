@@ -46,15 +46,17 @@ router.get("/dashboard/alreadyread", async (req, res, next) => {
 
     let users = [];
     let promises = [];
+
     for (i = 0; i < dataTest.AllreadyRead.length; i++) {
       promises.push(
         axios
           .get(
-            "https://www.googleapis.com/books/v1/volumes?q=" +
+            "https://www.googleapis.com/books/v1/volumes/" +
               dataTest.AllreadyRead[i].AllreadyRead
           )
           .then((response) => {
-            users.push(response.data.items[0]);
+            console.log(response);
+            users.push(response.data);
           })
       );
     }
@@ -86,12 +88,12 @@ router.get("/dashboard/read", async (req, res, next) => {
       promises.push(
         axios
           .get(
-            "https://www.googleapis.com/books/v1/volumes?q=" +
+            "https://www.googleapis.com/books/v1/volumes/" +
               dataTest.ToReadId[i].toReadID
           )
           .then((response) => {
             console.log(response.data);
-            users.push(response.data.items[0]);
+            users.push(response.data);
           })
       );
     }
