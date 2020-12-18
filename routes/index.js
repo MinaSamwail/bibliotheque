@@ -2,15 +2,30 @@ const express = require("express");
 const router = new express.Router();
 const axios = require("axios");
 
-
-
-
-
 //la page d'accueil (index.hbs) recherche les livres (R)
 router.get("/", (req, res) => {
-  const words = ["Albert", "murder", "cat", "dog", "apple", "bootcamp", "hacking", "king", "queen", "travel", "computing", "music", "berserk", "naruto", "maite", "dbz"];
+  const words = [
+    "Albert",
+    "murder",
+    "cat",
+    "dog",
+    "apple",
+    "bootcamp",
+    "hacking",
+    "king",
+    "queen",
+    "travel",
+    "computing",
+    "music",
+    "berserk",
+    "naruto",
+    "maite",
+    "dbz",
+  ];
   const random = Math.floor(Math.random() * words.length);
-  const searchValue = req.query.bookSearch ? req.query.bookSearch : words[random];
+  const searchValue = req.query.bookSearch
+    ? req.query.bookSearch
+    : words[random];
   const userId = req.session.userId;
   //random word to have a random index page
 
@@ -30,7 +45,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id([a-z0-9A-Z]{12})", (req, res) => {
   console.log(req.params.id);
   const test = req.params.id;
   const url = `https://www.googleapis.com/books/v1/volumes?q=${test}`;
@@ -39,7 +54,7 @@ router.get("/:id", (req, res) => {
     .get(url)
     .then(function (response) {
       const bookDetail = response.data.items;
-      console.log(bookDetail);
+
       // console.log("Resultat de la recherche", bookDetail);
       res.render("bookDetail", { bookDetail });
     })

@@ -10,6 +10,9 @@ const userSchema = new Schema({
     // default: "Lien de Cloudinary"
   },
   // googleID: String,
+  bookallreadyReadId: [
+    { type: Schema.Types.ObjectId, ref: "Book", default: [] },
+  ],
   ToReadId: [{ type: Schema.Types.ObjectId, ref: "ToRead", default: [] }],
   AllreadyRead: [
     { type: Schema.Types.ObjectId, ref: "AllreadyRead", default: [] },

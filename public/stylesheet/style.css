@@ -74,7 +74,7 @@
 #card,
 .alreadyRead-card {
   width: 15vw;
-  height: 50vh;
+  height: 35vh;
 }
 
 .card-info {
@@ -343,7 +343,8 @@ footer {
 .allbook-container,
 .data-container,
 .index-container,
-.book-read-container-test {
+.book-read-container-test,
+.data-container-com-book {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -354,7 +355,8 @@ footer {
 
 .books-card,
 .index-card,
-.container-read {
+.container-read,
+.combook-card {
   padding: 5px;
   width: 325px;
   margin-top: 40px;

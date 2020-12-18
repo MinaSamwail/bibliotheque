@@ -11,6 +11,9 @@ const bookSchema = new Schema({
   },
   language: String,
   UserId: { type: Schema.Types.ObjectId, ref: "UserId", default: "" },
+  UserIdAlreadyRead: [
+    { type: Schema.Types.ObjectId, ref: "UserIdAlreadyRead", default: [] },
+  ],
   pages: Number,
 });
 const Book = mongoose.model("Book", bookSchema);

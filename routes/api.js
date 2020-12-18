@@ -5,7 +5,7 @@ const userModel = require("../models/Users");
 const toReadReadModel = require("../models/ToRead");
 const axios = require("axios");
 
-router.post("/alreadyread/:id", async (req, res, next) => {
+router.post("/alreadyread/:id([a-z0-9A-Z]{12})", async (req, res, next) => {
   const id = req.params.id;
   try {
     const userId = req.session.userId;
@@ -133,8 +133,7 @@ router.post("/dashboard/alreadyRead/delete/:id", async (req, res, next) => {
     const userId = req.session.userId;
     console.log(userId);
     res.status(201).json(
-      await AllreadyReadModel.findByIdAndRemove(id)
-      .then((dbPost) => {
+      await AllreadyReadModel.findByIdAndRemove(id).then((dbPost) => {
         return userModel.findByIdAndUpdate(userId, {
           $pull: { AllreadyRead: dbPost._id },
         });

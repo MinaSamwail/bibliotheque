@@ -1,4 +1,5 @@
 <h1 class="title-already">I've read this Book</h1>
+<h2>Books</h2>
 <div class="data-container">
   {{#each mergedArr}}
   <div class="alreadyRead-card">
@@ -7,6 +8,19 @@
       <p>{{volumeInfo.title}}</p>
       <button id="{{_doc._id}}" class="fa fa-trash yo"></button>
     </div>
+  </div>
+  {{/each}}
+</div>
+<hr>
+<h2>Community Books</h2>
+<div class="data-container-com-book">
+{{#each data2}}
+  <div class="combook-card">
+    <img style="width: 200px;height: 160px;object-fit: scale-down;margin-bottom: -5px;" src={{this.smallThumbnail}} />
+
+      <p>{{this.title}}</p>
+      <a href="/user/dashboard/alreadyRead/community/delete/{{this._id}}" class="fa fa-trash"></a>
+  
   </div>
   {{/each}}
 </div>

@@ -5,8 +5,8 @@
 <h1>{{title}}</h1>
 <p>{{author}}</p>
 <div>{{description}}</div>
-  <a class="alreadyread" id="{{this.id}}">I've read this book</a>
-            <a class="read" id="{{this.id}}">I want to read this book</a>
+  <a class="alreadyread" href="/user/dashboard/books/alreadyread/{{this.id}}">I've read this book</a>
+  <a class="read" href="{{this.id}}">I want to read this book</a>
 </div>
 {{/each}}
 </div>

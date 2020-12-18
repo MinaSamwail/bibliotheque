@@ -38,6 +38,12 @@ router.get("/dashboard/alreadyread", async (req, res, next) => {
   const userId = req.session.userId;
   try {
     const dataTest = await userModel.findById(userId).populate("AllreadyRead");
+    const databooksAlreadyRead = await userModel
+      .findById(userId)
+      .populate("bookallreadyReadId");
+
+    const data2 = databooksAlreadyRead.bookallreadyReadId;
+
     let users = [];
     let promises = [];
     for (i = 0; i < dataTest.AllreadyRead.length; i++) {
@@ -62,7 +68,7 @@ router.get("/dashboard/alreadyread", async (req, res, next) => {
       );
       const mergedArr = Array.from(map.values());
 
-      res.render("allreadyRead", { mergedArr });
+      res.render("allreadyRead", { mergedArr, data2 });
     });
   } catch (err) {
     next(err);
@@ -73,6 +79,7 @@ router.get("/dashboard/read", async (req, res, next) => {
   const userId = req.session.userId;
   try {
     const dataTest = await userModel.findById(userId).populate("ToReadId");
+    console.log("dataTest ====>", dataTest);
     let users = [];
     let promises = [];
     for (i = 0; i < dataTest.ToReadId.length; i++) {
@@ -83,31 +90,35 @@ router.get("/dashboard/read", async (req, res, next) => {
               dataTest.ToReadId[i].toReadID
           )
           .then((response) => {
+            console.log(response.data);
             users.push(response.data.items[0]);
           })
       );
     }
     let test = dataTest.ToReadId;
-    Promise.all(promises).then(function () {
-      console.log(test);
-      const map = new Map();
-      users.forEach((item) => map.set(item.id, item));
-      test.forEach((item) =>
-        map.set(item.toReadID, { ...map.get(item.toReadID), ...item })
-      );
-      const mergedArr2 = Array.from(map.values());
-      res.render("read", { mergedArr2 });
-    });
+    Promise.all(promises)
+      .then(function () {
+        const map = new Map();
+        users.forEach((item) => map.set(item.id, item));
+        test.forEach((item) =>
+          map.set(item.toReadID, { ...map.get(item.toReadID), ...item })
+        );
+        const mergedArr2 = Array.from(map.values());
+        res.render("read", { mergedArr2 });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } catch (err) {
     next(err);
   }
 });
 //GET BY ID and add to allready read
-router.get("/dashboard/alreadyread/:id", (req, res) => {
+router.get("/dashboard/alreadyread/:id([a-z0-9A-Z]{12})", (req, res) => {
   try {
     const id = req.params.id;
     const userId = req.session.userId;
-    console.log(userId);
+
     const dataID = { UserId: userId, AllreadyRead: id };
     allreadyReadModel
       .create(dataID)
@@ -122,11 +133,11 @@ router.get("/dashboard/alreadyread/:id", (req, res) => {
   }
 });
 
-router.get("/dashboard/read/:id", (req, res) => {
+router.get("/dashboard/read/:id([a-z0-9A-Z]{12})", (req, res) => {
   try {
     const id = req.params.id;
     const userId = req.session.userId;
-    console.log(userId);
+
     const dataID = { UserId: userId, toReadID: id };
     toReadReadModel
       .create(dataID)
@@ -149,7 +160,6 @@ router.get(
     try {
       const data = await userModel.findById(userId).populate("author");
 
-      console.log(data);
       res.render("booksCreated", { data });
     } catch (error) {
       next(error);
@@ -163,7 +173,7 @@ router.get("/dashboard/to-read/:id", (req, res) => {
 
 router.get("/dashboard/create", async (req, res) => {
   const userId = req.session.userId;
-  console.log(userId);
+
   try {
     res.render("createBooks", { user: await userModel.findById(userId) });
   } catch (error) {
@@ -224,6 +234,24 @@ router.post(
   }
 );
 
+router.get(
+  "/dashboard/alreadyRead/community/delete/:id",
+  async (req, res, next) => {
+    const userId = req.session.userId;
+    const deleteId = req.params.id;
+    try {
+      await userModel
+        .findByIdAndUpdate(userId, {
+          $pull: { bookallreadyReadId: deleteId },
+        })
+
+        .then(() => res.redirect("/user/dashboard/alreadyread"));
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 router.get("/dashboard/alreadyRead/delete/:id", async (req, res, next) => {
   const userId = req.session.userId;
   try {
@@ -277,6 +305,22 @@ router.get("/books", async (req, res, next) => {
   const books = await booksModel.find();
 
   res.render("books", { books });
+});
+
+router.get("/dashboard/books/alreadyread/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const userId = req.session.userId;
+
+    await userModel
+      .findByIdAndUpdate(userId, {
+        $push: { bookallreadyReadId: id },
+      })
+
+      .then(() => res.redirect("/user/books"));
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
