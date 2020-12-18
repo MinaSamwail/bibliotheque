@@ -4,19 +4,33 @@
     <h2>Add your favorite books to your online bookstore</h2>
 </div>
 <div class="index-container">
+    {{#unless isLoggedIn}}
+    {{#each bookDetail}}
+    <div class="index-card">
+        <div class="card-info">
+            <img class="zoom-test" src={{volumeInfo.imageLinks.smallThumbnail}} />
+            <p class="detail"> {{volumeInfo.title}}</p>
+            <a href="/{{this.id}}">Detail</a>          
+        </div>
+    </div>
+    {{/each}}
+    {{/unless}}
+
+{{#if isLoggedIn}}
     {{#each bookDetail}}
     <div class="index-card">
         <div class="card-info">
             <img class="zoom-test" src={{volumeInfo.imageLinks.smallThumbnail}} />
             <p class="detail"> {{volumeInfo.title}}</p>
             <a href="/{{this.id}}">Detail</a>
-          
             <button class="alreadyread" id="{{this.id}}">I've read this book</button>
-            <button class="read" id="{{this.id}}">I want to read this book</button>
-          
+            <button class="read" id="{{this.id}}">I want to read this book</button>  
         </div>
     </div>
     {{/each}}
+{{/if}}
+    
+     
 </div>
 <div>
     {{> footer}}
