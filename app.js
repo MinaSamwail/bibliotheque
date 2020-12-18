@@ -56,4 +56,10 @@ app.use("/auth", authRouter);
 const apiRouter = require("./routes/api");
 app.use("/api", apiRouter);
 
+/// KEEP THIS AS THE LAST ONE !
+app.use(function (req, res, next) {
+  res.status(404);
+  res.render("quatrecentrequatre");
+});
+
 module.exports = app;
