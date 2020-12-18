@@ -114,7 +114,7 @@ router.get("/dashboard/read", async (req, res, next) => {
   }
 });
 //GET BY ID and add to allready read
-router.get("/dashboard/alreadyread/:id([a-z0-9A-Z]{12})", (req, res) => {
+router.get("/dashboard/alreadyread/:id([a-z0-9A-Z-_]{12})", (req, res) => {
   try {
     const id = req.params.id;
     const userId = req.session.userId;
@@ -133,7 +133,7 @@ router.get("/dashboard/alreadyread/:id([a-z0-9A-Z]{12})", (req, res) => {
   }
 });
 
-router.get("/dashboard/read/:id([a-z0-9A-Z]{12})", (req, res) => {
+router.get("/dashboard/read/:id([a-z0-9A-Z-_]{12})", (req, res) => {
   try {
     const id = req.params.id;
     const userId = req.session.userId;

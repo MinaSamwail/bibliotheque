@@ -5,7 +5,7 @@ const userModel = require("../models/Users");
 const toReadReadModel = require("../models/ToRead");
 const axios = require("axios");
 
-router.post("/alreadyread/:id([a-z0-9A-Z]{12})", async (req, res, next) => {
+router.post("/alreadyread/:id([a-z0-9A-Z-_]{12})", async (req, res, next) => {
   const id = req.params.id;
   try {
     const userId = req.session.userId;
@@ -57,7 +57,7 @@ router.get("/dashboard/alreadyread", async (req, res, next) => {
   }
 });
 
-router.post("/read/:id", async (req, res, next) => {
+router.post("/read/:id([a-z0-9A-Z-_]{12})", async (req, res, next) => {
   const id = req.params.id;
   try {
     const userId = req.session.userId;
