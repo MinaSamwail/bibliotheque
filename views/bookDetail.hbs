@@ -1,5 +1,7 @@
 {{!-- <h1>Description</h1> --}}
-<div class="card-description">
+<div class="card-description" style="
+    text-align: center;
+">
     <div class="book-img">
         <img class="book-cover" src="{{bookDetail.[0].volumeInfo.imageLinks.smallThumbnail}}" alt="{{title}}">
     </div>
@@ -8,5 +10,15 @@
         <p class="book-authors">{{bookDetail.[0].volumeInfo.authors}}</p>
         <p class="book-resum">RÉSUMÉ</p>
         <p class="book-description">{{bookDetail.[0].volumeInfo.description}}</p>
+       
     </div>
+     <a href="/" 
+    style="text-decoration: none;
+   
+    width: 200px;
+    padding: 10px;
+    border-radius: 21px;
+    border: 1px solid;
+    color: black;"
+>Go back</a>
 </div>
