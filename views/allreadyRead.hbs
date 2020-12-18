@@ -3,7 +3,8 @@
 <div class="data-container">
   {{#each mergedArr}}
   <div class="alreadyRead-card">
-    <img src={{volumeInfo.imageLinks.smallThumbnail}} />
+    <img style="height: 160px;
+    object-fit: scale-down;"src={{volumeInfo.imageLinks.smallThumbnail}} />
     <div class="alreadyRead-info">
       <p>{{volumeInfo.title}}</p>
       <button id="{{_doc._id}}" class="fa fa-trash yo"></button>
@@ -12,7 +13,9 @@
   {{/each}}
 </div>
 <hr>
-<h2>Community Books</h2>
+<h2 style="
+    margin-top: 25px;
+">Community Books</h2>
 <div class="data-container-com-book">
 {{#each data2}}
   <div class="combook-card">

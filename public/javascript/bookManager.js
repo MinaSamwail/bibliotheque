@@ -64,8 +64,11 @@ function getFullList() {
         charContainer.innerHTML += `
         <div class="data-container">
         <div class="alreadyRead-card">
-        <img src=${elemt.volumeInfo.imageLinks.smallThumbnail}>
-          <p class="test">${elemt.volumeInfo.title}</p>
+        <img style="height: 160px;
+        object-fit: scale-down;" src=${elemt.volumeInfo.imageLinks.smallThumbnail}>
+        <div class="alreadyRead-info">  
+        <p>${elemt.volumeInfo.title}</p>
+          
       <button id="${elemt._doc._id}" class="fa fa-trash yo" name ="test"></button>
       </div>
       </div>

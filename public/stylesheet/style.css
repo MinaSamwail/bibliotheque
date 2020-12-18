@@ -416,3 +416,26 @@ footer {
   border-color: #f6b93b !important;
   transition: all 0.4s ease 0s;
 }
+
+.alreadyRead-info p {
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  min-height: 65px;
+}
+
+.fa-trash {
+  padding: 10px;
+  border: none;
+  background-color: #ef6565;
+  border-radius: 10px;
+  color: black;
+}
+
+.fa-trash:hover {
+  background: #ee3a0d;
+}
+a .fa-trash {
+  color: black;
+  font-size: 14px;
+}
