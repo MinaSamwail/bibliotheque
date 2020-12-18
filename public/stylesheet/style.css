@@ -397,3 +397,22 @@ footer {
 
   width: 60%;
 }
+
+.ourbook-a-class {
+  color: #494949 !important;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  margin-top: 10px;
+}
+
+.ourbook-a-class:hover {
+  color: #ffffff !important;
+  background: #f6b93b;
+  border-color: #f6b93b !important;
+  transition: all 0.4s ease 0s;
+}

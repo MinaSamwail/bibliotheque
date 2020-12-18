@@ -1,12 +1,28 @@
 <div class="allbook-container">
+  {{#unless isLoggedIn}}
 {{#each books}}
 <div class="books-card">
 <img style="width: 200px;height: 160px;object-fit: scale-down;margin-bottom: -5px;" src="{{smallThumbnail}}" alt="">
 <h1>{{title}}</h1>
 <p>{{author}}</p>
 <div>{{description}}</div>
-  <a class="alreadyread" href="/user/dashboard/books/alreadyread/{{this.id}}">I've read this book</a>
-  <a class="read" href="{{this.id}}">I want to read this book</a>
 </div>
 {{/each}}
+{{/unless}}
+    
+ 
+ 
+    {{#if isLoggedIn}}
+{{#each books}}
+<div class="books-card">
+<img style="width: 200px;height: 160px;object-fit: scale-down;margin-bottom: -5px;" src="{{smallThumbnail}}" alt="">
+<h1>{{title}}</h1>
+<p>{{author}}</p>
+<div>{{description}}</div>
+  <a class="ourbook-a-class" href="/user/dashboard/books/alreadyread/{{this.id}}">I've read this book</a>
+  <a class="ourbook-a-class"  href="{{this.id}}">I want to read this book</a>
+</div>
+{{/each}}
+{{/if}}
+    
 </div>
